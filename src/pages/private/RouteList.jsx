@@ -16,6 +16,7 @@ export default function RouteList() {
       typeId: 1,
       name: "companyName",
       value: "faker.company.name()",
+      subValue: 10,
     },
     {
       type: "array",
@@ -97,7 +98,7 @@ export default function RouteList() {
               <JsonBuilder data={data} />
             </div>
             <div className="w-[30%] bg-[#0c0d0e] p-3">
-              <ReactJson theme={"brewer"} src={data} />
+              <ReactJson theme={"brewer"} src={data} style={{ fontSize: 10 }} />
             </div>
           </div>
         )}

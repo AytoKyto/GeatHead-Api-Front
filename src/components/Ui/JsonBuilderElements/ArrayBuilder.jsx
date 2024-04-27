@@ -11,7 +11,7 @@ const ArrayBuilder = ({ data }) => {
       }`}
       data={data}
     >
-      <div className="pl-6">
+      <div className="pl-6 flex flex-col space-y-5">
         {data.value.map((item, index) => (
           <React.Fragment key={index}>
             {item.typeId === 1 && <DefaultBuilder data={item} />}

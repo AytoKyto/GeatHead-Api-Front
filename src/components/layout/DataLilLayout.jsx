@@ -6,11 +6,11 @@ const DataLilLayout = ({ children, sustitle, data }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="flex flex-col space-y-3 w-full">
+    <div className="flex flex-col space-y-3 w-full border border-slate-600 rounded-md p-2">
       <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
-        <div className="relative flex items-center space-x-4 py-4">
+        <div className="relative flex items-center space-x-4">
           <div className="min-w-0 flex-auto">
-            <div className="flex items-center gap-x-3">
+            <div className="flex items-center gap-x-3 pl-3">
               <h2 className="min-w-0 text-sm font-semibold leading-6 text-white">
                 <span className="flex gap-x-2">
                   <span className="truncate">{data.name}</span>
