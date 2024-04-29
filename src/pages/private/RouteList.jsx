@@ -29,6 +29,7 @@ export default function RouteList() {
           type: "default",
           typeId: 1,
           name: "nestedCompanyName1",
+          parentName: "nestedData",
           value: "faker.company.name",
         },
         {
