@@ -6,6 +6,8 @@ import DefaultLayoutApp from "../../components/layout/DefaultLayoutApp";
 import RouteApiList from "../../components/Ui/List/RouteApiList";
 import JsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
 
+import { fakeJsRenderer } from "../../logic/FakeJsRenderer";
+
 export default function RouteList() {
   const [projectId, setProjectId] = useState(null);
   const [projectDataArray, setProjectDataArray] = useState([]);
@@ -15,7 +17,7 @@ export default function RouteList() {
       type: "default",
       typeId: 1,
       name: "companyName",
-      value: "faker.company.name()",
+      value: "faker.datatype.array",
       subValue: 10,
     },
     {
@@ -27,13 +29,13 @@ export default function RouteList() {
           type: "default",
           typeId: 1,
           name: "nestedCompanyName1",
-          value: "faker.company.name()",
+          value: "faker.company.name",
         },
         {
           type: "default",
           typeId: 1,
           name: "nestedCompanyName2",
-          value: "faker.company.name()",
+          value: "faker.company.name",
         },
         {
           type: "array",
@@ -44,19 +46,42 @@ export default function RouteList() {
               type: "default",
               typeId: 1,
               name: "innerCompanyName1",
-              value: "faker.company.name()",
+              value: "faker.company.name",
             },
             {
               typeId: 1,
               type: "default",
               name: "innerCompanyName2",
-              value: "faker.company.name()",
+              value: "faker.company.name",
+            },
+            {
+              type: "array",
+              typeId: 2,
+              name: "nestedInnerData",
+              value: [
+                {
+                  type: "default",
+                  typeId: 1,
+                  parentName: "nestedInnerData",
+                  name: "innerCompanyName1",
+                  value: "faker.company.name",
+                },
+                {
+                  typeId: 1,
+                  type: "default",
+                  parentName: "nestedInnerData",
+                  name: "innerCompanyName2",
+                  value: "faker.company.name",
+                },
+              ],
             },
           ],
         },
       ],
     },
   ]);
+
+  console.log(fakeJsRenderer(data));
 
   useEffect(() => {
     const url = window.location.href;
@@ -91,14 +116,22 @@ export default function RouteList() {
           <div>Loading...</div>
         ) : (
           <div className="flex space-x-5">
-            <div className="w-[15%]">
+            <div className="w-[15%] h-screen overflow-scroll">
               <RouteApiList />
             </div>
-            <div className="w-[55%]">
+            <div className="w-[55%] h-screen overflow-scroll">
               <JsonBuilder data={data} />
             </div>
-            <div className="w-[30%] bg-[#0c0d0e] p-3">
-              <ReactJson theme={"brewer"} src={data} style={{ fontSize: 10 }} />
+            <div className="w-[30%] bg-[#0c0d0e] p-3 h-screen overflow-scroll">
+              <ReactJson
+                theme={"brewer"}
+                src={{
+                  status: true,
+                  message: "Requête effectuée avec succès",
+                  data: fakeJsRenderer(data),
+                }}
+                style={{ fontSize: 10 }}
+              />
             </div>
           </div>
         )}

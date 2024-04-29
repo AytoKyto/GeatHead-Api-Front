@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
         }
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, []);
 
@@ -39,7 +39,7 @@ export const AuthProvider = ({ children }) => {
         id: decodedToken.id
       });
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   };
 

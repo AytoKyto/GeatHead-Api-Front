@@ -173,7 +173,7 @@ export default function DefaultLayoutApp({ children }) {
         </div>
 
         <div className="lg:pl-20">
-          <div className="flex flex-col min-h-[93.5vh] bg-slate-900 overflow-hidden isolate">
+          <div className="flex flex-col  h-screen overflow-scroll bg-slate-900 isolate">
             {children}
           </div>
         </div>

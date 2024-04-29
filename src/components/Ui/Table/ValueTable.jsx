@@ -39,7 +39,6 @@ export default function ValueTable({ routeId, projectId }) {
     axios
       .request(optionCreate)
       .then(function (response) {
-        console.log(response);
         setIsError({
           isError: false,
           title: "Succès",
@@ -75,7 +74,7 @@ export default function ValueTable({ routeId, projectId }) {
     axios
       .request(optionDuplicate)
       .then(function (response) {
-        console.log(response);
+        console.info(response);
       })
       .catch(function (error) {
         console.error(error);
@@ -99,7 +98,7 @@ export default function ValueTable({ routeId, projectId }) {
     axios
       .request(optionUpdate)
       .then(function (response) {
-        console.log(response)
+        console.info(response)
       })
       .catch(function (error) {
         console.error(error);
@@ -113,7 +112,7 @@ export default function ValueTable({ routeId, projectId }) {
     axios
       .request(option)
       .then(function (response) {
-        console.log(response);
+        console.info(response);
         setData(response.data.data);
       })
       .catch(function (error) {

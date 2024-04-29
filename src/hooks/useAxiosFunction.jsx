@@ -31,10 +31,10 @@ const useAxiosFunction = () => {
         // Utilisation du signal du contrôleur d'annulation
         signal: ctrl.signal,
       });
-      console.log("res", res);
+      console.info("res", res);
       setResponse(res.data);
     } catch (err) {
-      console.log("err", err.message);
+      console.error("err", err.message);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -43,7 +43,7 @@ const useAxiosFunction = () => {
 
   // Utilisation de useEffect pour annuler la requête en cas de changement d'état
   useEffect(() => {
-    console.log(controller);
+    console.info(controller);
 
     // useEffect cleanup function pour annuler la requête en cas de changement d'état
     return () => controller && controller.abort();
