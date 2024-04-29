@@ -7,7 +7,19 @@ import JsonBuilder from "../JsonBuilderElements/JsonBuilder";
 import DefaultBuilder from "../JsonBuilderElements/DefaultBuilder";
 import DefaultBox from "../../layout/DefaultBox";
 
-const ApiJsonBuilder = ({ data }) => {
+const ApiJsonBuilder = ({ data, setData }) => {
+  const addData = () => {
+    const newData = {
+      type: "default",
+      typeId: 1,
+      name: "new Data " + Math.floor(Math.random() * 100),
+      value: "faker.company.name",
+    };
+
+    // Utiliser une fonction pour garantir que l'on travaille avec le dernier état
+    setData((currentData) => [...currentData, newData]);
+  };
+
   return (
     <div className="flex flex-col space-y-5">
       <DefaultBox customClass={"flex space-x-5 item-start justify-start"}>
@@ -18,9 +30,9 @@ const ApiJsonBuilder = ({ data }) => {
         {" "}
         {data.map((item, index) => (
           <>
-            {item.typeId === 1 && <DefaultBuilder data={item} index={index} />}
-            {item.typeId === 2 && <ArrayBuilder data={item} index={index} />}
-            {item.typeId === 3 && <JsonBuilder data={item} index={index} />}
+            {item.typeId === 1 && <DefaultBuilder data={item} datas={data} setData={setData} index={index} />}
+            {item.typeId === 2 && <ArrayBuilder data={item} datas={data} setData={setData} index={index} />}
+            {item.typeId === 3 && <JsonBuilder data={item} datas={data} setData={setData} index={index} />}
           </>
         ))}
       </DefaultBox>
@@ -31,6 +43,7 @@ const ApiJsonBuilder = ({ data }) => {
         </div>
         <div className="relative flex justify-center">
           <button
+            onClick={addData}
             type="button"
             className="inline-flex items-center gap-x-1.5 rounded-full bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-slate-500 hover:bg-slate-900"
           >

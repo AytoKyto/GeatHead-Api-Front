@@ -2,7 +2,7 @@ import React, { useState, Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
 
-const DataLilLayout = ({ children, sustitle, data }) => {
+const DataLilLayout = ({ children, sustitle, data, datas, setData }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (

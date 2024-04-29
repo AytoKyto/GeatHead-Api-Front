@@ -27,6 +27,19 @@ const fakeJsRenderer = (data) => {
           throw e;
         }
         break;
+      case 3:
+        try {
+          const nestedData = {};
+          item.value.forEach((subItem, index) => {
+            nestedData[subItem.name] = fakeJsRenderer([subItem]);
+          });
+          dataFakeJs[item.name] = nestedData;
+        } catch (e) {
+          console.error("Erreur lors de l'utilisation de 'Function':", e);
+          throw e;
+        }
+        break;
+
       default:
         console.error("typeId inconnu:", item.typeId);
     }

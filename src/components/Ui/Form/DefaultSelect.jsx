@@ -12,9 +12,9 @@ export default function DefaultSelect({ label, data, selected, setSelected }) {
       <Listbox value={selected} onChange={setSelected}>
         {({ open }) => (
           <Fragment>
-            <Listbox.Label className="block text-sm font-medium leading-6 text-slate-200">
+            {/* <Listbox.Label className="block text-sm font-medium leading-6 text-slate-200">
               {label}
-            </Listbox.Label>
+            </Listbox.Label> */}
             <div className="relative z-50 mt-2">
               <Listbox.Button className="relative w-full cursor-default rounded-md bg-slate-800 py-1.5 pl-3 pr-10 text-left text-slate-200 shadow-sm ring-1 ring-inset ring-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm">
                 <span className="block truncate">{selected.name}</span>

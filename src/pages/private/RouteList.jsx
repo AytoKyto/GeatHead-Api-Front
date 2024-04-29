@@ -4,7 +4,7 @@ import ReactJson from "react-json-view";
 
 import DefaultLayoutApp from "../../components/layout/DefaultLayoutApp";
 import RouteApiList from "../../components/Ui/List/RouteApiList";
-import JsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
+import ApiJsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
 
 import { fakeJsRenderer } from "../../logic/FakeJsRenderer";
 
@@ -12,12 +12,12 @@ export default function RouteList() {
   const [projectId, setProjectId] = useState(null);
   const [projectDataArray, setProjectDataArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [data, setDate] = useState([
+  const [data, setData] = useState([
     {
       type: "default",
       typeId: 1,
       name: "companyName",
-      value: "faker.datatype.array",
+      value: "faker.address.cardinalDirection",
       subValue: 10,
     },
     {
@@ -45,18 +45,18 @@ export default function RouteList() {
             {
               type: "default",
               typeId: 1,
-              name: "innerCompanyName1",
+              name: "innerCompanyName11",
               value: "faker.company.name",
             },
             {
               typeId: 1,
               type: "default",
-              name: "innerCompanyName2",
+              name: "innerCompanyName12",
               value: "faker.company.name",
             },
             {
-              type: "array",
-              typeId: 2,
+              type: "object",
+              typeId: 3,
               name: "nestedInnerData",
               value: [
                 {
@@ -81,7 +81,9 @@ export default function RouteList() {
     },
   ]);
 
-  console.log(fakeJsRenderer(data));
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   useEffect(() => {
     const url = window.location.href;
@@ -120,7 +122,7 @@ export default function RouteList() {
               <RouteApiList />
             </div>
             <div className="w-[55%] h-screen overflow-scroll">
-              <JsonBuilder data={data} />
+              <ApiJsonBuilder data={data} setData={setData} />
             </div>
             <div className="w-[30%] bg-[#0c0d0e] p-3 h-screen overflow-scroll">
               <ReactJson
