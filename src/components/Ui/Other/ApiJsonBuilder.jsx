@@ -22,8 +22,8 @@ const ApiJsonBuilder = ({ data, setData }) => {
 
   return (
     <div className="flex flex-col space-y-5">
-      <DefaultBox customClass={"flex space-x-5 item-start justify-start"}>
-        <h2 className="text-slate-100 text-3xl font-semibold">Endpoint</h2>
+      <DefaultBox customClass={"flex space-x-3 items-baseline"}>
+        <h2 className="text-slate-100 text-3xl font-semibold">Michael Foster</h2>
         <p className="text-slate-100 text-lg font-semibold">/api8797643</p>
       </DefaultBox>
       <DefaultBox>

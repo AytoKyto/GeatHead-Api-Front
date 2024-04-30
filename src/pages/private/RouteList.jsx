@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { faker } from "@faker-js/faker";
 import axios from "axios";
 import ReactJson from "react-json-view";
 
@@ -14,18 +15,23 @@ export default function RouteList() {
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([
     {
+      id: faker.datatype.uuid(),
       type: "default",
       typeId: 1,
       name: "companyName",
+      parentName: null,
       value: "faker.address.cardinalDirection",
       subValue: 10,
     },
     {
+      id: faker.datatype.uuid(),
       type: "array",
       typeId: 2,
       name: "nestedData",
+      parentName: null,
       value: [
         {
+          id: faker.datatype.uuid(),
           type: "default",
           typeId: 1,
           name: "nestedCompanyName1",
@@ -33,45 +39,59 @@ export default function RouteList() {
           value: "faker.company.name",
         },
         {
+          id: faker.datatype.uuid(),
           type: "default",
           typeId: 1,
           name: "nestedCompanyName2",
+          parentName: "nestedData",
           value: "faker.company.name",
         },
         {
+          id: faker.datatype.uuid(),
           type: "array",
           typeId: 2,
           name: "nestedInnerData",
+          parentName: "nestedData",
           value: [
             {
+              id: faker.datatype.uuid(),
               type: "default",
               typeId: 1,
               name: "innerCompanyName11",
+              parentName: "nestedInnerData",
               value: "faker.company.name",
             },
             {
+              id: faker.datatype.uuid(),
               typeId: 1,
               type: "default",
               name: "innerCompanyName12",
+              parentName: "nestedInnerData",
               value: "faker.company.name",
             },
             {
+              id: faker.datatype.uuid(),
               type: "object",
               typeId: 3,
-              name: "nestedInnerData",
+              name: "nestedInnerData2",
+              parentName: "nestedInnerData",
               value: [
                 {
+                  id: faker.datatype.uuid(),
                   type: "default",
                   typeId: 1,
                   parentName: "nestedInnerData",
                   name: "innerCompanyName1",
+                  parentName: "nestedInnerData2",
                   value: "faker.company.name",
                 },
                 {
+                  id: faker.datatype.uuid(),
                   typeId: 1,
                   type: "default",
                   parentName: "nestedInnerData",
                   name: "innerCompanyName2",
+                  parentName: "nestedInnerData2",
                   value: "faker.company.name",
                 },
               ],
