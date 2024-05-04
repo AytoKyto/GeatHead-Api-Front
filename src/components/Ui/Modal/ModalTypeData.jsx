@@ -1,6 +1,5 @@
 import { Fragment, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
-import { CheckIcon } from "@heroicons/react/24/outline";
 import Data from "../../../data/FakeData";
 
 const fixedDataTypes = [
@@ -17,7 +16,7 @@ export default function ModalTypeData({ onClose, onAdd }) {
 
   return (
     <Transition.Root show={open} as={Fragment}>
-      <Dialog as="div" className="relative z-10" onClose={setOpen}>
+      <Dialog as="div" className="relative z-50" onClose={setOpen}>
         <Transition.Child
           as={Fragment}
           enter="ease-out duration-300"
@@ -27,7 +26,7 @@ export default function ModalTypeData({ onClose, onAdd }) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 backdrop-filter backdrop-blur-lg" />
+          <div className="fixed inset-0 backdrop-filter bg-custom-500/20 backdrop-blur-lg" />
         </Transition.Child>
 
         <div className="fixed inset-0 z-10 w-screen h-screen overflow-y-auto p-10">
@@ -59,15 +58,15 @@ export default function ModalTypeData({ onClose, onAdd }) {
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam,
               quod.
             </p>
-            <div className="flex flex-col p-5 bg-slate-700 rounded-lg">
+            <div className="flex flex-col p-3 bg-custom-500 border border-custom-450 rounded-lg">
               <h2 className="text-xl font-bold text-slate-100 mb-3">
                 Données fixe
               </h2>
-              <div className="flex gap-5 w-full">
+              <div className="flex justify-between gap-5 w-full">
                 {fixedDataTypes.map((type) => (
                   <div
                     onClick={() => onAdd(type)}
-                    className="flex flex-1 justify-center items-center w-full p-5 bg-slate-600 rounded-lg cursor-pointer hover:bg-slate-500 transition-all"
+                    className="p-2 px-5 bg-custom-600 w-full text-center border border-custom-450 rounded-lg cursor-pointer hover:bg-custom-700 transition-all"
                     key={type}
                   >
                     <p className="text-slate-100">{type}</p>
@@ -94,7 +93,7 @@ export default function ModalTypeData({ onClose, onAdd }) {
               </a>
             </p>
             {Data.map((type) => (
-              <div className="flex flex-col p-5 bg-slate-700 rounded-lg">
+              <div className="flex flex-col p-3 bg-custom-500 border border-custom-450 rounded-lg">
                 <h2 className="text-xl font-bold text-slate-100 mb-5">
                   {type.name}
                 </h2>
@@ -102,7 +101,7 @@ export default function ModalTypeData({ onClose, onAdd }) {
                   {type.data.map((data, index) => (
                     <div
                       onClick={() => onAdd(data.value)}
-                      className="flex flex-1 justify-center items-center w-full p-1 px-3 bg-slate-600 rounded-lg cursor-pointer hover:bg-slate-500 transition-all"
+                      className="p-2 px-5 bg-custom-600 border border-custom-450 rounded-lg cursor-pointer hover:bg-custom-700 transition-all"
                       key={index}
                     >
                       <p className="text-slate-100 text-lg">{data.name}</p>

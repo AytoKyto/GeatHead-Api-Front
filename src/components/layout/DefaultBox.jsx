@@ -7,7 +7,7 @@ export default function DefaultBox({ children, customClass }) {
   return (
     <div
       className={classnames(
-        "p-3 bg-slate-800 border border-slate-600 rounded-md",
+        "p-3 bg-custom-500 border border-custom-450 rounded-lg",
         customClass
       )}
     >

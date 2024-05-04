@@ -25,6 +25,14 @@ export default function RouteList() {
     },
     {
       id: faker.datatype.uuid(),
+      type: "object",
+      typeId: 3,
+      name: "object",
+      parentName: null,
+      value: [],
+    },
+    {
+      id: faker.datatype.uuid(),
       type: "array",
       typeId: 2,
       name: "nestedData",
@@ -73,7 +81,7 @@ export default function RouteList() {
               id: faker.datatype.uuid(),
               type: "object",
               typeId: 3,
-              name: "nestedInnerData2",
+              name: "object",
               parentName: "nestedInnerData",
               value: [
                 {
@@ -134,18 +142,23 @@ export default function RouteList() {
 
   return (
     <DefaultLayoutApp>
-      <main className="flex-grow p-5">
+      <main className="p-2 h-screen">
         {loading ? (
           <div>Loading...</div>
         ) : (
-          <div className="flex space-x-5">
-            <div className="w-[15%] h-screen overflow-scroll">
-              <RouteApiList />
+          <div className="flex space-x-2">
+            <div className="w-[15%] h-[98vh] flex flex-col space-y-2">
+              <div className="bg-custom-600 h-[5vh] p-3 rounded-lg">
+                <p className="text-slate-100 font-semibold text-xl">{"<"}</p>
+              </div>
+              <div className="bg-custom-600 w-full h-[93vh] overflow-scroll p-2 rounded-lg">
+                <RouteApiList />
+              </div>
             </div>
-            <div className="w-[55%] h-screen overflow-scroll">
+            <div className="w-[60%] overflow-scroll h-[98vh] bg-custom-600 p-2 rounded-lg">
               <ApiJsonBuilder data={data} setData={setData} />
             </div>
-            <div className="w-[30%] bg-[#0c0d0e] p-3 h-screen overflow-scroll">
+            <div className="w-[25%] p-2 bg-custom-600 rounded-lg h-full overflow-scroll">
               <ReactJson
                 theme={"brewer"}
                 src={{
@@ -153,7 +166,11 @@ export default function RouteList() {
                   message: "Requête effectuée avec succès",
                   data: fakeJsRenderer(data),
                 }}
-                style={{ fontSize: 10 }}
+                style={{
+                  fontSize: 10,
+                  height: "96.4vh",
+                  backgroundColor: "#12121C",
+                }}
               />
             </div>
           </div>

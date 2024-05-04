@@ -1,4 +1,5 @@
 import React from "react";
+import { faker } from "@faker-js/faker";
 
 import { PlusIcon } from "@heroicons/react/20/solid";
 
@@ -10,6 +11,7 @@ import DefaultBox from "../../layout/DefaultBox";
 const ApiJsonBuilder = ({ data, setData }) => {
   const addData = () => {
     const newData = {
+      id: faker.datatype.uuid(),
       type: "default",
       typeId: 1,
       name: "new Data " + Math.floor(Math.random() * 100),
@@ -39,13 +41,13 @@ const ApiJsonBuilder = ({ data, setData }) => {
 
       <div className="relative">
         <div className="absolute inset-0 flex items-center" aria-hidden="true">
-          <div className="w-full border-t border-slate-600" />
+          <div className="w-full border-t border-custom-450" />
         </div>
         <div className="relative flex justify-center">
           <button
             onClick={addData}
             type="button"
-            className="inline-flex items-center gap-x-1.5 rounded-full bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-slate-500 hover:bg-slate-900"
+            className="inline-flex items-center gap-x-1.5 rounded-full bg-custom-500 px-3 py-1.5 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-custom-450 hover:bg-custom-700"
           >
             <PlusIcon
               className="-ml-1 -mr-0.5 h-5 w-5 text-slate-400"
