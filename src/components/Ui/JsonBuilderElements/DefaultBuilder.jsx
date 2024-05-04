@@ -5,7 +5,6 @@ import ModalTypeData from "../Modal/ModalTypeData";
 import BtnBuilderGroupe from "../Other/BtnBuilderGroupe";
 
 import { updateDataValue } from "../../../logic/UpdateDataValue";
-import { updateDataValueName } from "../../../logic/UpdateDataValueName";
 
 const DefaultBuilder = ({ data = {}, datas, setData }) => {
   const [selected, setSelected] = useState({ id: 1, name: data.type });
@@ -19,12 +18,6 @@ const DefaultBuilder = ({ data = {}, datas, setData }) => {
   useEffect(() => {
     console.log("datas", datas);
   }, [datas]);
-
-  const handleUpdateDataName = (newValue) => {
-    setData((currentData) =>
-      updateDataValueName(data.id, newValue, currentData)
-    );
-  };
 
   return (
     <>
@@ -46,14 +39,7 @@ const DefaultBuilder = ({ data = {}, datas, setData }) => {
       </Transition>
       <DataLilLayout sustitle={data.value} data={data}>
         <div className="flex justify-between items-end">
-          <div className="flex space-x-3 z-50 items-end w-[85%]">
-            <input
-              type="text"
-              defaultValue={data.name}
-              onChange={(event) => handleUpdateDataName(event.target.value)}
-              className="block max-w-52 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-              placeholder="Nom de la données"
-            />
+          <div className="flex space-x-3 z-50 items-end w-[20%]">
             {selected.id === 1 && (
               <button
                 onClick={() => setIsModale(!isModale)}

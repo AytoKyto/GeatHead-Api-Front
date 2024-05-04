@@ -5,6 +5,7 @@ import { faker } from "@faker-js/faker";
 import DefaultSelect from "../Form/DefaultSelect";
 
 import { updateDataValueType } from "../../../logic/UpdateDataValueType";
+import { updateDataValueName } from "../../../logic/UpdateDataValueName";
 
 export default function BtnBuilderGroupe({ data, datas, setData }) {
   const [selected, setSelected] = useState({ id: 1, name: data.type });
@@ -20,6 +21,12 @@ export default function BtnBuilderGroupe({ data, datas, setData }) {
       updateDataValueType(data.id, newValue, currentData)
     );
     setSelected(newValue);
+  };
+
+  const handleUpdateDataName = (newValue) => {
+    setData((currentData) =>
+      updateDataValueName(data.id, newValue, currentData)
+    );
   };
 
   const deleteDataToNestedStructure = (newData, currentData) => {
@@ -102,6 +109,13 @@ export default function BtnBuilderGroupe({ data, datas, setData }) {
         data={types}
         selected={selected}
         setSelected={handleUpdateDataType}
+      />
+      <input
+        type="text"
+        defaultValue={data.name}
+        onChange={(event) => handleUpdateDataName(event.target.value)}
+        className="block max-w-52 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+        placeholder="Nom de la données"
       />
       <DocumentDuplicateIcon
         onClick={handleAddData}
