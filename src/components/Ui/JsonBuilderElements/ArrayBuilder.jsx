@@ -1,6 +1,7 @@
 import React from "react";
 
 import { PlusIcon } from "@heroicons/react/20/solid";
+import { faker } from "@faker-js/faker";
 
 import DefaultBuilder from "./DefaultBuilder";
 import JsonBuilder from "./JsonBuilder";
@@ -34,6 +35,7 @@ const ArrayBuilder = ({ data, datas, setData }) => {
 
   const handleAddData = () => {
     const newData = {
+      id: faker.datatype.uuid(),
       type: "default",
       typeId: 1,
       name: "new Data " + Math.floor(Math.random() * 100),

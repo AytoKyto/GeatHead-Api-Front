@@ -7,8 +7,8 @@ import BtnBuilderGroupe from "../Other/BtnBuilderGroupe";
 
 const types = [
   { id: 1, name: "Default" },
-  { id: 2, name: "Array" },
   { id: 3, name: "Json" },
+  { id: 2, name: "Array" },
 ];
 
 const DefaultBuilder = ({ data = {}, datas, setData }) => {

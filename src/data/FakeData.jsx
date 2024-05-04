@@ -81,18 +81,18 @@ const Data = [
       { name: "Mots", value: "faker.lorem.words" },
     ],
   },
-  {
-    id: 5,
-    name: "Mersenne",
-    data: [
-      { name: "Aléatoire", value: "faker.mersenne.rand" },
-      { name: "Initialiser", value: "faker.mersenne.seed" },
-      {
-        name: "Tableau d'Initialisation",
-        value: "faker.mersenne.seed_array",
-      },
-    ],
-  },
+  // {
+  //   id: 5,
+  //   name: "Mersenne",
+  //   data: [
+  //     { name: "Aléatoire", value: "faker.mersenne.rand" },
+  //     { name: "Initialiser", value: "faker.mersenne.seed" },
+  //     {
+  //       name: "Tableau d'Initialisation",
+  //       value: "faker.mersenne.seed_array",
+  //     },
+  //   ],
+  // },
   {
     id: 6,
     name: "Animaux",
