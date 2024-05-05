@@ -9,110 +9,17 @@ import RouteApiList from "../../components/Ui/List/RouteApiList";
 import ApiJsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
 
 import { fakeJsRenderer } from "../../logic/FakeJsRenderer";
-import { getRouteList } from "../../api/GetRouteList";
-import { getSingleProject } from "../../api/GetSingleProject";
+import { getRouteList } from "../../api/RouteService";
+import { getDataRoute } from "../../api/DataService";
+import { getSingleProject } from "../../api/ProjectService";
 
 export default function RouteList() {
   const [project, setProject] = useState(null);
   const [route, setRoute] = useState(null);
   const [projectDataArray, setProjectDataArray] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([
-    {
-      id: faker.datatype.uuid(),
-      type: "default",
-      typeId: 1,
-      name: "companyName",
-      parentName: null,
-      value: "faker.address.cardinalDirection",
-      subValue: 10,
-    },
-    {
-      id: faker.datatype.uuid(),
-      type: "object",
-      typeId: 3,
-      name: "object",
-      parentName: null,
-      value: [],
-    },
-    {
-      id: faker.datatype.uuid(),
-      type: "array",
-      typeId: 2,
-      name: "nestedData",
-      parentName: null,
-      value: [
-        {
-          id: faker.datatype.uuid(),
-          type: "default",
-          typeId: 1,
-          name: "nestedCompanyName1",
-          parentName: "nestedData",
-          value: "faker.company.name",
-        },
-        {
-          id: faker.datatype.uuid(),
-          type: "default",
-          typeId: 1,
-          name: "nestedCompanyName2",
-          parentName: "nestedData",
-          value: "faker.company.name",
-        },
-        {
-          id: faker.datatype.uuid(),
-          type: "array",
-          typeId: 2,
-          name: "nestedInnerData",
-          parentName: "nestedData",
-          value: [
-            {
-              id: faker.datatype.uuid(),
-              type: "default",
-              typeId: 1,
-              name: "innerCompanyName11",
-              parentName: "nestedInnerData",
-              value: "faker.company.name",
-            },
-            {
-              id: faker.datatype.uuid(),
-              typeId: 1,
-              type: "default",
-              name: "innerCompanyName12",
-              parentName: "nestedInnerData",
-              value: "faker.company.name",
-            },
-            {
-              id: faker.datatype.uuid(),
-              type: "object",
-              typeId: 3,
-              name: "object",
-              parentName: "nestedInnerData",
-              value: [
-                {
-                  id: faker.datatype.uuid(),
-                  type: "default",
-                  typeId: 1,
-                  parentName: "nestedInnerData",
-                  name: "innerCompanyName1",
-                  parentName: "nestedInnerData2",
-                  value: "faker.company.name",
-                },
-                {
-                  id: faker.datatype.uuid(),
-                  typeId: 1,
-                  type: "default",
-                  parentName: "nestedInnerData",
-                  name: "innerCompanyName2",
-                  parentName: "nestedInnerData2",
-                  value: "faker.company.name",
-                },
-              ],
-            },
-          ],
-        },
-      ],
-    },
-  ]);
+  const [dataId, setDataId] = useState(null);
+  const [data, setData] = useState([]);
 
   useEffect(() => {
     const fetchProjectData = async () => {
@@ -122,8 +29,12 @@ export default function RouteList() {
 
       const data = await getRouteList(projectIdUrl);
       const dataProject = await getSingleProject(projectIdUrl);
+      console.log(data[0]._id);
+      const dataValue = await getDataRoute(data[0]._id);
       setProjectDataArray(data || []);
-      setProject(dataProject || []);
+      setProject(dataProject);
+      setData(dataValue[0].value || []);
+      setDataId(dataValue[0]._id);
       setRoute(data[0]);
       setLoading(false);
     };
@@ -177,7 +88,13 @@ export default function RouteList() {
               </div>
             </div>
             <div className="w-[60%] overflow-scroll h-[98vh] bg-custom-600 p-2 rounded-lg">
-              <ApiJsonBuilder data={data} setData={setData} route={route} />
+              <ApiJsonBuilder
+                project={project}
+                data={data}
+                setData={setData}
+                route={route}
+                dataId={dataId}
+              />
             </div>
             <div className="w-[25%] p-2 bg-custom-600 rounded-lg h-full overflow-scroll">
               <ReactJson
