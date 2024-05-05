@@ -9,11 +9,33 @@ const fakeJsRenderer = (data) => {
     switch (item.typeId) {
       case 1:
         try {
-          const result = getFakerFunctionByString(item.value);
-          dataFakeJs[item.name] = result();
-        } catch (e) {
-          console.error("Erreur lors de l'utilisation de 'Function':", e);
-          throw e;
+          if (item.value.includes("faker")) {
+            const result = getFakerFunctionByString(item.value);
+            dataFakeJs[item.name] = result();
+          } else {
+            try {
+              if (item.value === "Number") {
+                dataFakeJs[item.name] = Number(item.subValue);
+              } else if (item.value === "Array" || item.value === "Object") {
+                dataFakeJs[item.name] = JSON.parse(item.subValue);
+              } else {
+                dataFakeJs[item.name] = item.subValue;
+              }
+            } catch (innerError) {
+              console.error(
+                `Erreur lors du traitement de l'élément ${item.name}:`,
+                innerError
+              );
+              // Définir une valeur par défaut ou autre traitement en cas d'erreur
+              dataFakeJs[item.name] = null;
+            }
+          }
+        } catch (outerError) {
+          console.error(
+            "Erreur lors de l'utilisation de 'Function':",
+            outerError
+          );
+          throw outerError;
         }
         break;
       case 2:

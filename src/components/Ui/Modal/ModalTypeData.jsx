@@ -6,7 +6,7 @@ const fixedDataTypes = [
   "String",
   "Number",
   "Boolean",
-  "Date",
+  // "Date",
   "Array",
   "Object",
 ];
@@ -93,18 +93,24 @@ export default function ModalTypeData({ onClose, onAdd }) {
               </a>
             </p>
             {Data.map((type) => (
-              <div className="flex flex-col p-3 bg-custom-500 border border-custom-450 rounded-lg">
+              <div
+                key={type.id} // Use a unique key
+                className="flex flex-col p-3 bg-custom-500 border border-custom-450 rounded-lg"
+              >
                 <h2 className="text-xl font-bold text-slate-100 mb-5">
                   {type.name}
                 </h2>
                 <div className="flex gap-5 w-full flex-wrap">
-                  {type.data.map((data, index) => (
+                  {type.data.map((item) => (
                     <div
-                      onClick={() => onAdd(data.value)}
-                      className="p-2 px-5 bg-custom-600 border border-custom-450 rounded-lg cursor-pointer hover:bg-custom-700 transition-all"
-                      key={index}
+                      onClick={() => onAdd(item.value)}
+                      className="group p-2 px-5 bg-custom-600 border border-custom-450 rounded-lg cursor-pointer hover:bg-custom-700 transition-all relative"
+                      key={item.id} // Use a unique key
                     >
-                      <p className="text-slate-100 text-lg">{data.name}</p>
+                      <p className="text-slate-100 text-lg">{item.name}</p>
+                      <span className="absolute top-full mt-1 scale-0 rounded bg-gray-800 p-2 text-xs text-white group-hover:scale-100 transition-all">
+                        Exemple : {item.value + "()"}
+                      </span>
                     </div>
                   ))}
                 </div>

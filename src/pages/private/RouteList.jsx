@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 import axios from "axios";
 import ReactJson from "react-json-view";
+import { Link } from "react-router-dom";
 
 import DefaultLayoutApp from "../../components/layout/DefaultLayoutApp";
 import RouteApiList from "../../components/Ui/List/RouteApiList";
@@ -148,11 +149,30 @@ export default function RouteList() {
         ) : (
           <div className="flex space-x-2">
             <div className="w-[15%] h-[98vh] flex flex-col space-y-2">
-              <div className="bg-custom-600 h-[5vh] p-3 rounded-lg">
-                <p className="text-slate-100 font-semibold text-xl">{"<"}</p>
+              <div className="bg-custom-600 h-[5vh] p-3 rounded-lg flex items-center justify-between">
+                <Link to="/project">
+                  <p className="text-slate-100 font-semibold text-xl bg-custom-700 hover:bg-custom-500 border border-custom-450 rounded-lg px-2 py-1">
+                    {"<"}
+                  </p>
+                </Link>
+                <p className="text-slate-200 font-semibold text-2xl">CAPEM</p>
               </div>
-              <div className="bg-custom-600 w-full h-[93vh] overflow-scroll p-2 rounded-lg">
+              <div className="bg-custom-600 w-full h-[93vh] overflow-scroll p-2 rounded-lg flex flex-col justify-between">
                 <RouteApiList />
+                <div className="w-full">
+                  <a
+                    href="#"
+                    className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-slate-100 hover:bg-gray-800"
+                  >
+                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-custom-300">
+                      <span className="text-sm font-medium leading-none text-slate-100 uppercase">
+                        {"Tom Cook".substring(0, 2)}
+                      </span>
+                    </span>
+                    <span className="sr-only">Your profile</span>
+                    <span aria-hidden="true">Tom Cook</span>
+                  </a>
+                </div>
               </div>
             </div>
             <div className="w-[60%] overflow-scroll h-[98vh] bg-custom-600 p-2 rounded-lg">

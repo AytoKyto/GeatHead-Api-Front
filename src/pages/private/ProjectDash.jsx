@@ -72,7 +72,7 @@ export default function ProjectDash() {
       .request(options)
       .then(function (response) {
         setProjects(response.data.data);
-        console.log(response.data.data)
+        console.log(response.data.data);
       })
       .catch(function (error) {
         console.error(error);
@@ -101,12 +101,12 @@ export default function ProjectDash() {
           }
         />
       )}
-      <main className="flex-grow p-5">
+      <main className="p-5">
         <div className="flex justify-between items-center mb-12">
           <h1 className="text-2xl font-bold text-slate-100">Projets</h1>
         </div>
-        <div className="flex flex-col space-y-1">
-          {/* {projects &&
+        <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects &&
             projects.map((project) => (
               <ProjectCard
                 key={project._id}
@@ -115,8 +115,8 @@ export default function ProjectDash() {
                 date={project.date_created}
                 fetchData={fetchData}
               />
-            ))} */}
-          <ProjectApiList projects={projects} />
+            ))}
+          {/* <ProjectApiList projects={projects} /> */}
           {/* New project */}
           <div className="flex flex-col flex-1 w-full transition-all">
             <form

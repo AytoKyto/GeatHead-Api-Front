@@ -8,31 +8,10 @@ import JsonBuilder from "./JsonBuilder";
 import DataLilLayout from "../../layout/DataLilLayout";
 import BtnBuilderGroupe from "../Other/BtnBuilderGroupe";
 
+import { addDataToNestedStructure } from "../../../logic/AddDataToNestedStructure";
+
 const ArrayBuilder = ({ data, datas, setData }) => {
   // Recursively add data to a nested structure based on parentName
-  const addDataToNestedStructure = (newData, currentData) => {
-    if (!Array.isArray(currentData)) {
-      return currentData;
-    }
-
-    return currentData.map((item) => {
-      if (
-        item.id === data.id &&
-        (item.type === "array" || item.type === "object")
-      ) {
-        // Found the target parent, insert new data
-        return { ...item, value: [...item.value, newData] };
-      } else if (item.value && Array.isArray(item.value)) {
-        // Recursively update children
-        return {
-          ...item,
-          value: addDataToNestedStructure(newData, item.value),
-        };
-      }
-      return item;
-    });
-  };
-
   const handleAddData = () => {
     const newData = {
       id: faker.datatype.uuid(),
@@ -43,7 +22,9 @@ const ArrayBuilder = ({ data, datas, setData }) => {
       value: "faker.company.name",
     };
 
-    setData((currentData) => addDataToNestedStructure(newData, currentData));
+    setData((currentData) =>
+      addDataToNestedStructure(newData, currentData, data)
+    );
   };
 
   return (
