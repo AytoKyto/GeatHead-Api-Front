@@ -15,7 +15,7 @@ export default function DefaultSelect({ label, data, selected, setSelected }) {
             {label}
           </Listbox.Label>
           <div className="relative z-50">
-            <Listbox.Button className="relative w-full cursor-default rounded-md bg-slate-800 py-1.5 pl-3 pr-10 text-left text-slate-200 shadow-sm ring-1 ring-inset ring-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm">
+            <Listbox.Button className="relative w-full cursor-default rounded-md bg-custom-600 py-1.5 pl-3 pr-10 text-left text-slate-200 shadow-sm ring-1 ring-inset ring-slate-700 focus:outline-none focus:ring-2 focus:ring-indigo-600 sm:text-sm">
               <span className="block truncate">{selected.name}</span>
               <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
                 <ChevronUpDownIcon
@@ -32,7 +32,7 @@ export default function DefaultSelect({ label, data, selected, setSelected }) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-slate-800 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute z-50 mt-1 max-h-60 w-full overflow-auto rounded-md bg-custom-600 py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
                 {data.map((item) => (
                   <Listbox.Option
                     key={item.id}

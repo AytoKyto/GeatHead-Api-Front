@@ -9,7 +9,7 @@ import JsonBuilder from "../JsonBuilderElements/JsonBuilder";
 import DefaultBuilder from "../JsonBuilderElements/DefaultBuilder";
 import DefaultBox from "../../layout/DefaultBox";
 
-const ApiJsonBuilder = ({ data, setData }) => {
+const ApiJsonBuilder = ({ data, setData, route }) => {
   const addData = () => {
     const newData = {
       id: faker.datatype.uuid(),
@@ -27,9 +27,9 @@ const ApiJsonBuilder = ({ data, setData }) => {
     <div className="flex flex-col space-y-5">
       <DefaultBox customClass={"flex justify-between items-center"}>
         <div className="flex space-x-3 items-baseline">
-          <h2 className="text-slate-100 text-3xl font-semibold">etat_du_marche</h2>
+          <h2 className="text-slate-100 text-3xl font-semibold">{route.endpoint}</h2>
           <p className="text-slate-100 text-lg font-semibold">
-            /etat_du_marche_63f11568b445989dfb87d351
+            /{route.endpoint}_{route._id}
           </p>
         </div>
         <div className="flex space-x-3 items-center">
@@ -96,7 +96,7 @@ const ApiJsonBuilder = ({ data, setData }) => {
               className="-ml-1 -mr-0.5 h-5 w-5 text-slate-400"
               aria-hidden="true"
             />
-            Button text
+            Ajouter un block
           </button>
         </div>
       </div>

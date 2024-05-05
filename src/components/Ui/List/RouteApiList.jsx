@@ -2,7 +2,7 @@ export default function RouteApiList({ data }) {
   return (
     <div className="flex flex-col space-y-2">
       {data.map((item) => (
-        <div key={item._id} className="py-4 bg-custom-500 p-2 rounded-lg">
+        <div key={item._id} className="py-4 bg-custom-500 p-2 rounded-lg hover:bg-custom-700 cursor-pointer">
           <div className="flex items-center gap-x-3">
             <span className="inline-flex items-center rounded-md bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30">
               GET

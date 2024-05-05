@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
-import axios from "axios";
 import ReactJson from "react-json-view";
 import { Link } from "react-router-dom";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
@@ -10,9 +9,12 @@ import RouteApiList from "../../components/Ui/List/RouteApiList";
 import ApiJsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
 
 import { fakeJsRenderer } from "../../logic/FakeJsRenderer";
+import { getRouteList } from "../../api/GetRouteList";
+import { getSingleProject } from "../../api/GetSingleProject";
 
 export default function RouteList() {
-  const [projectId, setProjectId] = useState(null);
+  const [project, setProject] = useState(null);
+  const [route, setRoute] = useState(null);
   const [projectDataArray, setProjectDataArray] = useState([]);
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState([
@@ -113,33 +115,20 @@ export default function RouteList() {
   ]);
 
   useEffect(() => {
-    console.log(data);
-  }, [data]);
+    const fetchProjectData = async () => {
+      const url = window.location.href;
+      const urlArray = url.split("/");
+      const projectIdUrl = urlArray[urlArray.length - 1];
 
-  useEffect(() => {
-    const url = window.location.href;
-    const urlArray = url.split("/");
-    const projectIdUrl = urlArray[urlArray.length - 1];
-    setProjectId(projectIdUrl);
+      const data = await getRouteList(projectIdUrl);
+      const dataProject = await getSingleProject(projectIdUrl);
+      setProjectDataArray(data || []);
+      setProject(dataProject || []);
+      setRoute(data[0]);
+      setLoading(false);
+    };
 
-    axios
-      .request({
-        method: "GET",
-        url: "http://localhost:3001/routes/get-route/" + projectIdUrl,
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-      .then(function (response) {
-        console.log("response", response);
-        setProjectDataArray(response.data.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-      })
-      .finally(function () {
-        setLoading(false);
-      });
+    fetchProjectData();
   }, []);
 
   return (
@@ -157,7 +146,11 @@ export default function RouteList() {
                     aria-hidden="true"
                   />
                 </Link>
-                <p className="text-slate-200 font-semibold text-2xl">CAPEM</p>
+                <p className="text-slate-200 font-semibold text-2xl uppercase">
+                  {project.name.length < 7
+                    ? project.name
+                    : project.name.substring(0, 7) + "..."}
+                </p>
               </div>
               <div className="bg-custom-600 w-full h-[93vh] overflow-scroll p-2 rounded-lg flex flex-col justify-between">
                 <div className="flex flex-col space-y-2">
@@ -181,24 +174,10 @@ export default function RouteList() {
                     </button>
                   </div>
                 </div>
-                <div className="w-full">
-                  <a
-                    href="#"
-                    className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-slate-100 hover:bg-gray-800"
-                  >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-custom-300">
-                      <span className="text-sm font-medium leading-none text-slate-100 uppercase">
-                        {"Tom Cook".substring(0, 2)}
-                      </span>
-                    </span>
-                    <span className="sr-only">Your profile</span>
-                    <span aria-hidden="true">Tom Cook</span>
-                  </a>
-                </div>
               </div>
             </div>
             <div className="w-[60%] overflow-scroll h-[98vh] bg-custom-600 p-2 rounded-lg">
-              <ApiJsonBuilder data={data} setData={setData} />
+              <ApiJsonBuilder data={data} setData={setData} route={route} />
             </div>
             <div className="w-[25%] p-2 bg-custom-600 rounded-lg h-full overflow-scroll">
               <ReactJson

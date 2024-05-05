@@ -86,13 +86,13 @@ const JsonBuilder = ({ data, datas, setData }) => {
             <button
               onClick={handleAddData}
               type="button"
-              className="inline-flex items-center gap-x-1.5 rounded-full bg-slate-800 px-3 py-1.5 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-slate-500 hover:bg-slate-900"
+              className="inline-flex items-center gap-x-1.5 rounded-full bg-custom-600 px-3 py-1.5 text-sm font-semibold text-slate-300 shadow-sm ring-1 ring-inset ring-slate-600 hover:bg-custom-700"
             >
               <PlusIcon
                 className="-ml-1 -mr-0.5 h-5 w-5 text-slate-400"
                 aria-hidden="true"
               />
-              Button text
+              Ajouter un block
             </button>
           </div>
         </div>

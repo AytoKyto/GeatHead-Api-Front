@@ -219,7 +219,7 @@ export default function ValueTable({ routeId, projectId }) {
                         <td className="whitespace-nowrap text-sm font-medium text-white sm:pl-0">
                           <input
                             type="text"
-                            className="bg-slate-800 py-2 pl-3 pr-3  text-white rounded-md w-full"
+                            className="bg-custom-700 py-2 pl-3 pr-3  text-white rounded-md w-full"
                             value={person.name}
                             onChange={(e) => {
                               setData(
@@ -243,7 +243,7 @@ export default function ValueTable({ routeId, projectId }) {
                         </td>
                         <input
                           type="text"
-                          className="bg-slate-800 py-2 pl-3 pr-3 text-sm text-gray-300 rounded-md w-full"
+                          className="bg-custom-700 py-2 pl-3 pr-3 text-sm text-gray-300 rounded-md w-full"
                           value={person.argument}
                           onChange={(e) => {
                             setData(

@@ -101,6 +101,20 @@ export default function ProjectDash() {
       <main className="p-5">
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-3xl font-bold text-slate-100">Projets</h1>
+          <div className="">
+            <a
+              href="#"
+              className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-slate-100"
+            >
+              <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-custom-300">
+                <span className="text-sm font-medium leading-none text-slate-100 uppercase">
+                  {"Tom Cook".substring(0, 2)}
+                </span>
+              </span>
+              <span className="sr-only">Your profile</span>
+              <span aria-hidden="true">Tom Cook</span>
+            </a>
+          </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects &&

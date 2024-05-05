@@ -8,7 +8,6 @@ import SignIn from "../pages/public/site/SignIn";
 
 import ProjectDash from "../pages/private/ProjectDash";
 import RouteList from "../pages/private/RouteList";
-import Editor from "../pages/private/Editor";
 
 // RouteBrowser component for creating different routes for the application.
 export default function RouteBrowser() {
@@ -52,7 +51,6 @@ export default function RouteBrowser() {
           <>
             <Route path="/project" element={<ProjectDash />} />
             <Route path="/list/:id" element={<RouteList />} />
-            <Route path="/editor/:projectId/:id" element={<Editor />} />
           </>
         )}
       </Routes>
