@@ -24,17 +24,48 @@ const ApiJsonBuilder = ({ data, setData }) => {
 
   return (
     <div className="flex flex-col space-y-5">
-      <DefaultBox customClass={"flex space-x-3 items-baseline"}>
-        <h2 className="text-slate-100 text-3xl font-semibold">Michael Foster</h2>
-        <p className="text-slate-100 text-lg font-semibold">/api8797643</p>
+      <DefaultBox customClass={"flex justify-between items-center"}>
+        <div className="flex space-x-3 items-baseline">
+          <h2 className="text-slate-100 text-3xl font-semibold">
+            Michael Foster
+          </h2>
+          <p className="text-slate-100 text-lg font-semibold">/api8797643</p>
+        </div>
+        <button
+          type="button"
+          className="rounded bg-indigo-600 p-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        >
+          Sauvgarder
+        </button>
       </DefaultBox>
       <DefaultBox>
         {" "}
         {data.map((item, index) => (
           <>
-            {item.typeId === 1 && <DefaultBuilder data={item} datas={data} setData={setData} index={index} />}
-            {item.typeId === 2 && <ArrayBuilder data={item} datas={data} setData={setData} index={index} />}
-            {item.typeId === 3 && <JsonBuilder data={item} datas={data} setData={setData} index={index} />}
+            {item.typeId === 1 && (
+              <DefaultBuilder
+                data={item}
+                datas={data}
+                setData={setData}
+                index={index}
+              />
+            )}
+            {item.typeId === 2 && (
+              <ArrayBuilder
+                data={item}
+                datas={data}
+                setData={setData}
+                index={index}
+              />
+            )}
+            {item.typeId === 3 && (
+              <JsonBuilder
+                data={item}
+                datas={data}
+                setData={setData}
+                index={index}
+              />
+            )}
           </>
         ))}
       </DefaultBox>
