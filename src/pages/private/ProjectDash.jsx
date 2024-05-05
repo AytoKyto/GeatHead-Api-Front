@@ -3,9 +3,6 @@ import axios from "axios";
 
 import ProjectCard from "../../components/Ui/Card/ProjectCard";
 import DefaultAlert from "../../components/Ui/DefaultAlert";
-import DefaultLayoutApp from "../../components/layout/DefaultLayoutApp";
-
-import ProjectApiList from "../../components/Ui/List/ProjectApiList";
 
 import { AuthContext } from "../../context/AuthProvider";
 
@@ -90,7 +87,8 @@ export default function ProjectDash() {
   }, []);
 
   return (
-    <DefaultLayoutApp>
+    <div className="bg-custom-700 min-h-screen">
+      {" "}
       {error.title !== "" && (
         <DefaultAlert
           title={error.title}
@@ -153,6 +151,6 @@ export default function ProjectDash() {
           </div>
         </div>
       </main>
-    </DefaultLayoutApp>
+    </div>
   );
 }

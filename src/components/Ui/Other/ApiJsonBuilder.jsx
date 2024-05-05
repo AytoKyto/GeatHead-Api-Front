@@ -1,6 +1,7 @@
 import React from "react";
 import { faker } from "@faker-js/faker";
 
+import { DocumentCheckIcon, TrashIcon } from "@heroicons/react/24/outline";
 import { PlusIcon } from "@heroicons/react/20/solid";
 
 import ArrayBuilder from "../JsonBuilderElements/ArrayBuilder";
@@ -26,17 +27,28 @@ const ApiJsonBuilder = ({ data, setData }) => {
     <div className="flex flex-col space-y-5">
       <DefaultBox customClass={"flex justify-between items-center"}>
         <div className="flex space-x-3 items-baseline">
-          <h2 className="text-slate-100 text-3xl font-semibold">
-            Michael Foster
-          </h2>
-          <p className="text-slate-100 text-lg font-semibold">/api8797643</p>
+          <h2 className="text-slate-100 text-3xl font-semibold">dd</h2>
+          <p className="text-slate-100 text-lg font-semibold">
+            /dd_63f11568b445989dfb87d351
+          </p>
         </div>
-        <button
-          type="button"
-          className="rounded bg-indigo-600 p-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-        >
-          Sauvgarder
-        </button>
+        <div className="flex space-x-3 items-center">
+          <p className="text-slate-100 text-sm">Nombre de boucle</p>
+          <input
+            type="number"
+            defaultValue={1}
+            className="block w-14 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            placeholder="Nom de la données"
+          />
+          <DocumentCheckIcon
+            className="h-7 w-7 text-indigo-600 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
+            aria-hidden="true"
+          />
+          <TrashIcon
+            className="h-7 w-7 text-red-600 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
+            aria-hidden="true"
+          />
+        </div>
       </DefaultBox>
       <DefaultBox>
         {" "}

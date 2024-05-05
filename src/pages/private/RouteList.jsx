@@ -3,6 +3,7 @@ import { faker } from "@faker-js/faker";
 import axios from "axios";
 import ReactJson from "react-json-view";
 import { Link } from "react-router-dom";
+import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
 import DefaultLayoutApp from "../../components/layout/DefaultLayoutApp";
 import RouteApiList from "../../components/Ui/List/RouteApiList";
@@ -130,7 +131,7 @@ export default function RouteList() {
         },
       })
       .then(function (response) {
-        console.log(response);
+        console.log("response", response);
         setProjectDataArray(response.data.data);
       })
       .catch(function (error) {
@@ -151,14 +152,35 @@ export default function RouteList() {
             <div className="w-[15%] h-[98vh] flex flex-col space-y-2">
               <div className="bg-custom-600 h-[5vh] p-3 rounded-lg flex items-center justify-between">
                 <Link to="/project">
-                  <p className="text-slate-100 font-semibold text-xl bg-custom-700 hover:bg-custom-500 border border-custom-450 rounded-lg px-2 py-1">
-                    {"<"}
-                  </p>
+                  <ArrowLeftCircleIcon
+                    className="h-7 w-7 text-slate-300 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
+                    aria-hidden="true"
+                  />
                 </Link>
                 <p className="text-slate-200 font-semibold text-2xl">CAPEM</p>
               </div>
               <div className="bg-custom-600 w-full h-[93vh] overflow-scroll p-2 rounded-lg flex flex-col justify-between">
-                <RouteApiList />
+                <div className="flex flex-col space-y-2">
+                  <RouteApiList data={projectDataArray} />
+                  <div className="py-4 bg-custom-500 p-2 rounded-lg">
+                    <p className="text-slate-200 text-sm mb-2 font-semibold">
+                      Ajouter une route
+                    </p>
+                    <div className="flex items-center gap-x-3">
+                      <input
+                        type="text"
+                        className="block w-full mb-2 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                        placeholder="Nom de la route"
+                      />
+                    </div>
+                    <button
+                      type="button"
+                      className="rounded w-full bg-indigo-600 p-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    >
+                      Ajouter
+                    </button>
+                  </div>
+                </div>
                 <div className="w-full">
                   <a
                     href="#"
