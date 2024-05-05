@@ -55,7 +55,7 @@ const DefaultBuilder = ({ data = {}, datas, setData }) => {
                 {data.value === "Array" || data.value === "Object" ? (
                   <textarea
                     type="text"
-                    defaultValue={data.name}
+                    defaultValue={data.subValue}
                     onChange={(event) =>
                       handleUpdateDataSubValue(event.target.value)
                     }
