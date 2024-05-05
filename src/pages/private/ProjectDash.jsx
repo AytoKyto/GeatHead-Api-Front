@@ -3,11 +3,11 @@ import axios from "axios";
 
 import ProjectCard from "../../components/Ui/Card/ProjectCard";
 import DefaultAlert from "../../components/Ui/DefaultAlert";
+import DefaultBox from "../../components/layout/DefaultBox";
 
 import { AuthContext } from "../../context/AuthProvider";
 
 export default function ProjectDash() {
-  // useRef for the input
   const inputRef = useRef(null);
   const { userData } = useContext(AuthContext);
   const [projects, setProjects] = useState([]);
@@ -88,7 +88,6 @@ export default function ProjectDash() {
 
   return (
     <div className="bg-custom-700 min-h-screen">
-      {" "}
       {error.title !== "" && (
         <DefaultAlert
           title={error.title}
@@ -100,8 +99,8 @@ export default function ProjectDash() {
         />
       )}
       <main className="p-5">
-        <div className="flex justify-between items-center mb-12">
-          <h1 className="text-2xl font-bold text-slate-100">Projets</h1>
+        <div className="flex justify-between items-center mb-5">
+          <h1 className="text-3xl font-bold text-slate-100">Projets</h1>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {projects &&
@@ -116,16 +115,16 @@ export default function ProjectDash() {
             ))}
           {/* <ProjectApiList projects={projects} /> */}
           {/* New project */}
-          <div className="flex flex-col flex-1 w-full transition-all">
+          <DefaultBox customClass="flex flex-col flex-1 w-full transition-all">
             <form
-              className="flex flex-col space-y-3 mt-1"
+              className="flex flex-col space-y-2"
               onSubmit={handleCreateProject}
             >
               <input
                 type="text"
                 name="projectName"
                 placeholder="Nom du nouveau projet"
-                className="peer block w-full border-0 bg-transparent border-b-2 border-slate-100 py-1.5 text-gray-900 focus:ring-0 sm:text-sm sm:leading-6"
+                className="block max-w-52 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 ref={inputRef}
                 onChange={(e) =>
                   setDataProject({ ...dataProject, name: e.target.value })
@@ -134,21 +133,21 @@ export default function ProjectDash() {
               {dataProject.name !== "" ? (
                 <button
                   type="submit"
-                  className="bg-indigo-600 hover:bg-indigo-500 text-slate-100 hover:text-slate-200 font-bold py-2 px-4 rounded-lg"
+                  className="rounded bg-indigo-600 p-2 text-xs font-semibold text-white shadow-sm hover:bg-indigo-700 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
                 >
                   Créer
                 </button>
               ) : (
                 <button
                   type="submit"
-                  className="bg-indigo-300 hover:bg-indigo-400 text-slate-100 hover:text-slate-200 font-bold py-2 px-4 rounded-lg"
+                  className="rounded bg-custom-400 p-2 text-xs font-semibold text-white shadow-sm cursor-not-allowed"
                   disabled
                 >
                   Créer
                 </button>
               )}
             </form>
-          </div>
+          </DefaultBox>
         </div>
       </main>
     </div>

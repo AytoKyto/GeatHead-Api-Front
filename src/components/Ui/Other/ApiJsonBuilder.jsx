@@ -27,9 +27,9 @@ const ApiJsonBuilder = ({ data, setData }) => {
     <div className="flex flex-col space-y-5">
       <DefaultBox customClass={"flex justify-between items-center"}>
         <div className="flex space-x-3 items-baseline">
-          <h2 className="text-slate-100 text-3xl font-semibold">dd</h2>
+          <h2 className="text-slate-100 text-3xl font-semibold">etat_du_marche</h2>
           <p className="text-slate-100 text-lg font-semibold">
-            /dd_63f11568b445989dfb87d351
+            /etat_du_marche_63f11568b445989dfb87d351
           </p>
         </div>
         <div className="flex space-x-3 items-center">
@@ -37,7 +37,7 @@ const ApiJsonBuilder = ({ data, setData }) => {
           <input
             type="number"
             defaultValue={1}
-            className="block w-14 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+            className="block w-16 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Nom de la données"
           />
           <DocumentCheckIcon
