@@ -48,10 +48,13 @@ const ApiJsonBuilder = ({ dataId, project, data, setData, route }) => {
             className="block w-16 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Nom de la données"
           />
-          <EyeIcon
-            className="h-7 w-7 text-slate-200 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
-            aria-hidden="true"
-          />
+          <a href={process.env.REACT_APP_API_URL + "/api/" + route?._id} target="_blank">
+            <EyeIcon
+              className="h-7 w-7 text-slate-200 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
+              aria-hidden="true"
+            />
+          </a>
+
           {data.length >= 1 ? (
             <DocumentCheckIcon
               onClick={() =>
