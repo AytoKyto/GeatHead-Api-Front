@@ -7,6 +7,8 @@ import DefaultBox from "../../components/layout/DefaultBox";
 
 import { AuthContext } from "../../context/AuthProvider";
 
+import { createProject, getProject } from "../../api/ProjectService";
+
 export default function ProjectDash() {
   const inputRef = useRef(null);
   const { userData } = useContext(AuthContext);
@@ -14,90 +16,18 @@ export default function ProjectDash() {
   const [dataProject, setDataProject] = useState({
     name: "",
   });
-
-  const [error, setIsError] = useState({
-    isError: false,
-    title: "",
-    subTitle: "",
-  });
-
-  const options = {
-    method: "GET",
-    url: "http://localhost:3001/projects/get-projects/" + userData.id,
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-  };
-
-  const optionCreate = {
-    method: "POST",
-    url: "http://localhost:3001/projects/create-project",
-    headers: {
-      Authorization: "Bearer " + localStorage.getItem("token"),
-    },
-    data: { name: dataProject.name, user_id: userData.id },
-  };
-
-  const handleCreateProject = (e) => {
-    e.preventDefault();
-    axios
-      .request(optionCreate)
-      .then(function (response) {
-        setIsError({
-          isError: false,
-          title: "Succès",
-          subTitle: "Le projet a été créé avec succès.",
-        });
-      })
-      .catch(function (error) {
-        console.error(error);
-        setIsError({
-          isError: true,
-          title: "Erreur",
-          subTitle: "Une erreur est survenue lors de la création du projet.",
-        });
-      })
-      .finally(() => {
-        // Reset the input value
-        inputRef.current.value = "";
-        fetchData();
-      });
-  };
-
-  const fetchData = async () => {
-    axios
-      .request(options)
-      .then(function (response) {
-        setProjects(response.data.data);
-        console.log(response.data.data);
-      })
-      .catch(function (error) {
-        console.error(error);
-        setIsError({
-          isError: true,
-          title: "Erreur",
-          subTitle: error.response.data.message,
-        });
-      });
+  const fetcheProject = async (id) => {
+    const projects = await getProject(id);
+    setProjects(projects);
   };
 
   useEffect(() => {
-    fetchData();
+    fetcheProject(userData.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <div className="bg-custom-700 min-h-screen">
-      {error.title !== "" && (
-        <DefaultAlert
-          title={error.title}
-          subTitle={error.subTitle}
-          error={error.isError}
-          onClose={() =>
-            setIsError({ isError: false, title: "", subTitle: "" })
-          }
-        />
-      )}
       <main className="p-5">
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-3xl font-bold text-slate-100">Projets</h1>
@@ -117,14 +47,14 @@ export default function ProjectDash() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects &&
+          {projects.length > 0 &&
             projects.map((project) => (
               <ProjectCard
                 key={project._id}
                 name={project.name}
                 id={project._id}
                 date={project.date_created}
-                fetchData={fetchData}
+                fetchData={getProject}
               />
             ))}
           {/* <ProjectApiList projects={projects} /> */}
@@ -132,7 +62,12 @@ export default function ProjectDash() {
           <DefaultBox customClass="flex flex-col flex-1 w-full transition-all">
             <form
               className="flex flex-col space-y-2"
-              onSubmit={handleCreateProject}
+              onSubmit={() =>
+                createProject({
+                  name: dataProject.name,
+                  user_id: userData.id,
+                })
+              }
             >
               <input
                 type="text"

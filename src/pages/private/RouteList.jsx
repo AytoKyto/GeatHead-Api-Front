@@ -9,10 +9,9 @@ import RouteApiList from "../../components/Ui/List/RouteApiList";
 import ApiJsonBuilder from "../../components/Ui/Other/ApiJsonBuilder";
 
 import { useFakeJsRenderer } from "../../logic/FakeJsRenderer";
-import { getRouteList } from "../../api/RouteService";
+import { getRouteList, createRoute } from "../../api/RouteService";
 import { getDataRoute } from "../../api/DataService";
 import { getSingleProject } from "../../api/ProjectService";
-import { createRoute } from "../../api/RouteService";
 
 export default function RouteList() {
   const [project, setProject] = useState(null);
@@ -36,13 +35,16 @@ export default function RouteList() {
     const projectIdUrl = extractProjectIdFromUrl();
 
     const data = await getRouteList(projectIdUrl);
-    const dataValue = await getDataRoute(data[0]._id);
+    let dataValue = [];
+    if (data[0]?._id) {
+      dataValue = await getDataRoute(data[0]._id);
+    }
     const dataProject = await getSingleProject(projectIdUrl);
     setProjectDataArray(data || []);
     setProject(dataProject);
-    setData(dataValue[0].value || []);
-    setInitData(dataValue[0].value ? true : false);
-    setDataId(dataValue[0]._id);
+    setData(dataValue[0]?.value || []);
+    setInitData(dataValue[0]?.value ? true : false);
+    setDataId(dataValue[0]?._id);
     setRoute(data[0]);
     setLoading(false);
   };
