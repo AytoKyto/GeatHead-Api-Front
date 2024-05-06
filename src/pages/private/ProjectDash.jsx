@@ -1,28 +1,30 @@
 import React, { useState, useEffect, useContext, useRef } from "react";
-import axios from "axios";
-
+import { Link } from "react-router-dom";
 import ProjectCard from "../../components/Ui/Card/ProjectCard";
-import DefaultAlert from "../../components/Ui/DefaultAlert";
 import DefaultBox from "../../components/layout/DefaultBox";
 
 import { AuthContext } from "../../context/AuthProvider";
 
 import { createProject, getProject } from "../../api/ProjectService";
+import { getDataUser } from "../../api/UserService";
 
 export default function ProjectDash() {
   const inputRef = useRef(null);
   const { userData } = useContext(AuthContext);
+  const [userAllData, setUserAllData] = useState();
   const [projects, setProjects] = useState([]);
   const [dataProject, setDataProject] = useState({
     name: "",
   });
-  const fetcheProject = async (id) => {
+  const initData = async (id) => {
     const projects = await getProject(id);
+    const userDatas = await getDataUser(userData.id);
     setProjects(projects);
+    setUserAllData(userDatas);
   };
 
   useEffect(() => {
-    fetcheProject(userData.id);
+    initData(userData.id);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -32,18 +34,18 @@ export default function ProjectDash() {
         <div className="flex justify-between items-center mb-5">
           <h1 className="text-3xl font-bold text-slate-100">Projets</h1>
           <div className="">
-            <a
-              href="#"
+            <Link
+              to="/user"
               className="flex items-center gap-x-4 px-6 py-3 text-sm font-semibold leading-6 text-slate-100"
             >
               <span className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-custom-300">
                 <span className="text-sm font-medium leading-none text-slate-100 uppercase">
-                  {"Tom Cook".substring(0, 2)}
+                  {userAllData?.email.substring(0, 2)}
                 </span>
               </span>
               <span className="sr-only">Your profile</span>
-              <span aria-hidden="true">Tom Cook</span>
-            </a>
+              <span aria-hidden="true">{userAllData?.email}</span>
+            </Link>
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">

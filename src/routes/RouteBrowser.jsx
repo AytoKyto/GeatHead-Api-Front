@@ -8,6 +8,7 @@ import SignIn from "../pages/public/site/SignIn";
 
 import ProjectDash from "../pages/private/ProjectDash";
 import RouteList from "../pages/private/RouteList";
+import UserPage from "../pages/private/UserPage";
 
 // RouteBrowser component for creating different routes for the application.
 export default function RouteBrowser() {
@@ -18,7 +19,7 @@ export default function RouteBrowser() {
     if (token) {
       setIsAuthenticated(true);
     }
-    console.log("isAuthenticated: ", token);
+    // console.log("isAuthenticated: ", token);
   }, []);
 
   return (
@@ -51,6 +52,7 @@ export default function RouteBrowser() {
           <>
             <Route path="/project" element={<ProjectDash />} />
             <Route path="/list/:id" element={<RouteList />} />
+            <Route path="/user" element={<UserPage />} />
           </>
         )}
       </Routes>
