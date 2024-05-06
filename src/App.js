@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import RouterBrowser from "./routes/RouteBrowser"; // Importing RouteBrowser component
 import { AuthProvider } from "./context/AuthProvider";
 import axios from "axios";
+import { Toaster } from "sonner";
 
 import InfoSizeScreen from "./pages/InfoSizeScreen"; // Importing InfoSizeScreen component
 
@@ -27,6 +28,7 @@ export default function App() {
   return (
     <AuthProvider>
       {isMobile ? <InfoSizeScreen /> : <RouterBrowser />}
+      <Toaster position="top-right" theme="dark"/>
     </AuthProvider>
   );
 }

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { faker } from "@faker-js/faker";
 
 import {
@@ -11,14 +11,38 @@ import { PlusIcon } from "@heroicons/react/20/solid";
 import {
   uodatereateDataRoute,
   postCreateDataRoute,
+  deleteDataRoute,
 } from "../../../api/DataService";
+
+import { updateRoute, deleteRoute } from "../../../api/RouteService";
 
 import ArrayBuilder from "../JsonBuilderElements/ArrayBuilder";
 import JsonBuilder from "../JsonBuilderElements/JsonBuilder";
 import DefaultBuilder from "../JsonBuilderElements/DefaultBuilder";
 import DefaultBox from "../../layout/DefaultBox";
 
-const ApiJsonBuilder = ({ dataId, project, data, setData, route }) => {
+const ApiJsonBuilder = ({
+  dataId,
+  project,
+  data,
+  setData,
+  route,
+  initData,
+  fetchDefaultRouteData,
+}) => {
+  const [isSave, setisSave] = useState(initData);
+  const [routeData, setRouteData] = useState({
+    endpoint: route?.endpoint,
+    number_of_loops: route?.number_of_loops,
+  });
+
+  useEffect(() => {
+    setRouteData({
+      endpoint: route?.endpoint,
+      number_of_loops: route?.number_of_loops,
+    });
+  }, [route]);
+
   const addData = () => {
     const newData = {
       id: faker.datatype.uuid(),
@@ -36,49 +60,75 @@ const ApiJsonBuilder = ({ dataId, project, data, setData, route }) => {
     <div className="flex flex-col space-y-5">
       <DefaultBox customClass={"flex justify-between items-center"}>
         <input
-          defaultValue={route?.endpoint}
+          value={routeData.endpoint}
+          onChange={(e) =>
+            setRouteData({
+              ...routeData,
+              endpoint: e.target.value,
+            })
+          }
           type="text"
           className="rounded-md bg-transparent text-slate-100 text-3xl font-semibold border-none"
         />
+
         <div className="flex space-x-3 items-center">
           <p className="text-slate-100 text-sm">Nombre de boucle</p>
           <input
             type="number"
-            defaultValue={1}
+            value={routeData?.number_of_loops}
+            onChange={(value) =>
+              setRouteData({
+                ...routeData,
+                number_of_loops: value.target.value,
+              })
+            }
             className="block w-16 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
             placeholder="Nom de la données"
           />
-          <a href={process.env.REACT_APP_API_URL + "/api/" + route?._id} target="_blank">
-            <EyeIcon
-              className="h-7 w-7 text-slate-200 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
-              aria-hidden="true"
-            />
-          </a>
+          {isSave && (
+            <a
+              href={process.env.REACT_APP_API_URL + "/api/" + route?._id}
+              target="_blank"
+            >
+              <EyeIcon
+                className="h-7 w-7 text-slate-200 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
+                aria-hidden="true"
+              />
+            </a>
+          )}
 
-          {data.length >= 1 ? (
+          {initData ? (
             <DocumentCheckIcon
-              onClick={() =>
+              onClick={() => {
                 uodatereateDataRoute(dataId, {
                   value: data,
-                })
-              }
+                });
+                updateRoute(route._id, routeData);
+                setisSave(true);
+              }}
               className="h-7 w-7 text-indigo-600 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
               aria-hidden="true"
             />
           ) : (
             <DocumentCheckIcon
-              onClick={() =>
+              onClick={() => {
                 postCreateDataRoute({
                   project_id: project._id,
                   route_id: route._id,
                   value: data,
-                })
-              }
+                });
+                setisSave(true);
+              }}
               className="h-7 w-7 text-indigo-600 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
               aria-hidden="true"
             />
           )}
           <TrashIcon
+            onClick={() => {
+              data._id && deleteDataRoute(data._id);
+              deleteRoute(route._id);
+              fetchDefaultRouteData();
+            }}
             className="h-7 w-7 text-red-600 p-1 border border-slate-700 rounded-md hover:bg-slate-700 cursor-pointer"
             aria-hidden="true"
           />

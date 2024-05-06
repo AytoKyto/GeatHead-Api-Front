@@ -1,8 +1,16 @@
-export default function RouteApiList({ data }) {
+export default function RouteApiList({ data, setRoute, fetchRouteData }) {
   return (
     <div className="flex flex-col space-y-2">
       {data.map((item) => (
-        <div key={item._id} className="py-4 bg-custom-500 p-2 rounded-lg hover:bg-custom-700 cursor-pointer">
+        <div
+          key={item._id}
+          className="py-4 bg-custom-500 p-2 rounded-lg hover:bg-custom-700 cursor-pointer"
+          onClick={() => {
+            console.log(item);
+            setRoute(item);
+            fetchRouteData(item._id);
+          }}
+        >
           <div className="flex items-center gap-x-3">
             <span className="inline-flex items-center rounded-md bg-indigo-400/10 px-2 py-1 text-xs font-medium text-indigo-400 ring-1 ring-inset ring-indigo-400/30">
               GET
@@ -23,7 +31,7 @@ export default function RouteApiList({ data }) {
           </div>
           <p className="mt-3 truncate text-sm text-gray-500">
             <span className="text-gray-400">
-              /{item.endpoint}_{item._id}
+              /{item._id}
             </span>
           </p>
         </div>
