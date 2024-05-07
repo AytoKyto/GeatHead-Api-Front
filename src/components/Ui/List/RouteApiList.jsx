@@ -6,7 +6,6 @@ export default function RouteApiList({ data, setRoute, fetchRouteData }) {
           key={item._id}
           className="py-4 bg-custom-500 p-2 rounded-lg hover:bg-custom-700 cursor-pointer"
           onClick={() => {
-            console.log(item);
             setRoute(item);
             fetchRouteData(item._id);
           }}

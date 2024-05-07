@@ -49,7 +49,7 @@ export default function ProjectDash() {
           </div>
         </div>
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {projects.length > 0 &&
+          {projects?.length > 0 &&
             projects.map((project) => (
               <ProjectCard
                 key={project._id}
@@ -59,8 +59,6 @@ export default function ProjectDash() {
                 fetchData={getProject}
               />
             ))}
-          {/* <ProjectApiList projects={projects} /> */}
-          {/* New project */}
           <DefaultBox customClass="flex flex-col flex-1 w-full transition-all">
             <form
               className="flex flex-col space-y-2"

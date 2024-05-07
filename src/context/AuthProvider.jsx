@@ -19,7 +19,7 @@ export const AuthProvider = ({ children }) => {
         const expirationDate = new Date(decodedToken.exp * 1000);
         if (expirationDate > new Date()) {
           setUserData({
-            id: decodedToken.id
+            id: decodedToken.id,
           });
         } else {
           localStorage.removeItem("token");
@@ -36,7 +36,7 @@ export const AuthProvider = ({ children }) => {
       localStorage.setItem("token", token);
       const decodedToken = jwtDecode(token);
       setUserData({
-        id: decodedToken.id
+        id: decodedToken.id,
       });
     } catch (error) {
       console.error(error);

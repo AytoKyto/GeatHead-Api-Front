@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+import PrivateRoute from "./PrivateRoute";
+import ConnexionTrueRoute from "./ConnexionTrueRoute";
 
 import NotFound from "../pages/NotFound";
 import Home from "../pages/public/site/Home";
@@ -12,16 +15,6 @@ import UserPage from "../pages/private/UserPage";
 
 // RouteBrowser component for creating different routes for the application.
 export default function RouteBrowser() {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsAuthenticated(true);
-    }
-    // console.log("isAuthenticated: ", token);
-  }, []);
-
   return (
     <BrowserRouter>
       {/* <Routes> component from 'react-router-dom' */}
@@ -32,29 +25,44 @@ export default function RouteBrowser() {
         <Route
           path="/register"
           element={
-            isAuthenticated ? <Navigate to="/project" replace /> : <Register />
+            <ConnexionTrueRoute>
+              <Register />
+            </ConnexionTrueRoute>
           }
         />
         <Route
           path="/signin"
           element={
-            isAuthenticated ? <Navigate to="/project" replace /> : <SignIn />
+            <ConnexionTrueRoute>
+              <SignIn />
+            </ConnexionTrueRoute>
           }
         />
 
-        {/* <Route path="/project" element={isAuthenticated ? <ProjectDash /> : <Navigate to="/signin" replace />} />
-        <Route path="/list/:id" element={isAuthenticated ? <RouteList /> : <Navigate to="/signin" replace />} />
-        <Route path="/editor/:id" element={isAuthenticated ? <Editor /> : <Navigate to="/signin" replace />} /> */}
-
-        {/* <Route path="/register" element={<Register />} />
-        <Route path="/signin" element={<SignIn />} /> */}
-        {isAuthenticated && (
-          <>
-            <Route path="/project" element={<ProjectDash />} />
-            <Route path="/list/:id" element={<RouteList />} />
-            <Route path="/user" element={<UserPage />} />
-          </>
-        )}
+        <Route
+          path={"/project"}
+          element={
+            <PrivateRoute>
+              <ProjectDash />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/list/:id"}
+          element={
+            <PrivateRoute>
+              <RouteList />
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path={"/user"}
+          element={
+            <PrivateRoute>
+              <UserPage />
+            </PrivateRoute>
+          }
+        />
       </Routes>
     </BrowserRouter>
   );

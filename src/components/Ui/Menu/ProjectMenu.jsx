@@ -44,7 +44,7 @@ export default function ProjectMenu({ id, deleteProject }) {
                                     </button>
                                 )}
                             </Menu.Item>
-                            <Menu.Item>
+                            {/* <Menu.Item>
                                 {({ active }) => (
                                     <button
                                         className={classNames(
@@ -56,7 +56,7 @@ export default function ProjectMenu({ id, deleteProject }) {
                                         <span>Voir l'API</span>
                                     </button>
                                 )}
-                            </Menu.Item>
+                            </Menu.Item> */}
                             <Menu.Item>
                                 {({ active }) => (
                                     <button

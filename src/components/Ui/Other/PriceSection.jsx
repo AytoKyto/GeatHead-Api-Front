@@ -20,7 +20,7 @@ const tiers = [
         name: 'Classic',
         id: 'tier-startup',
         href: '#',
-        price: { mensuel: '3 €', annuel: '30 €' },
+        price: { mensuel: 'BETA', annuel: 'BETA' },
         description: 'Notre formule Classic est idéale pour les développeurs qui souhaitent créer des API de test sur mesure pour quelques euros par mois ou par an.',
         features: [
             '10 projets',
@@ -33,7 +33,7 @@ const tiers = [
         name: 'Enterprise',
         id: 'tier-enterprise',
         href: '#',
-        price: { mensuel: '10 €', annuel: '100 €' },
+        price: { mensuel: 'BETA', annuel: 'BETA' },
         description: 'Notre formule Enterprise est idéale pour les développeurs qui souhaitent créer des API de test sur mesure sans contraintes.',
         features: [
             'Projects Illimités',

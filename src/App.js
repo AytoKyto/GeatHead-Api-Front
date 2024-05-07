@@ -16,11 +16,17 @@ export default function App() {
 
   const handleResize = () => setScreenSize(window.innerWidth);
   useEffect(() => {
-    if (screenSize < 1200) {
-      setIsMobile(true);
-    } else {
+    console.log(window.location.pathname);
+    if (window.location.pathname === "/") {
       setIsMobile(false);
+    } else {
+      if (screenSize < 1200) {
+        setIsMobile(true);
+      } else {
+        setIsMobile(false);
+      }
     }
+
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, [screenSize]);
@@ -28,7 +34,7 @@ export default function App() {
   return (
     <AuthProvider>
       {isMobile ? <InfoSizeScreen /> : <RouterBrowser />}
-      <Toaster position="top-right" theme="dark"/>
+      <Toaster position="top-right" theme="dark" />
     </AuthProvider>
   );
 }

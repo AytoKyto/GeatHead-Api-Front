@@ -3,6 +3,7 @@ import {
   CloudArrowUpIcon,
   ServerIcon,
 } from "@heroicons/react/20/solid";
+import image from "../../assets/images/screen1.png";
 
 const features = [
   {
@@ -44,7 +45,7 @@ export default function FeatureSectionSite() {
       <div className="relative overflow-hidden pt-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <img
-            src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+            src={image}
             alt="App screenshot"
             className="mb-[-12%] rounded-xl shadow-2xl ring-1 ring-white/10"
             width={2432}

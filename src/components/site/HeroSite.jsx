@@ -4,6 +4,7 @@ import { ChevronRightIcon } from "@heroicons/react/20/solid";
 
 import logo_full_white from "../../assets/logo/logo_full_white.svg";
 import WallSvg from "../Ui/Other/WallSvg";
+import image from "../../assets/images/screen1.png";
 
 export default function HeroSite() {
   return (
@@ -30,7 +31,10 @@ export default function HeroSite() {
             Création rapide d'API de test
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            Créez facilement des API de test sur mesure avec des données fictives en quelques clics grâce à notre générateur d'API alimenté par Faker.js. Simplifiez votre processus de développement et améliorez la qualité de vos tests avec nos solutions sur mesure.
+            Créez facilement des API de test sur mesure avec des données
+            fictives en quelques clics grâce à notre générateur d'API alimenté
+            par Faker.js. Simplifiez votre processus de développement et
+            améliorez la qualité de vos tests avec nos solutions sur mesure.
           </p>
           <div className="mt-10 flex items-center gap-x-6">
             <Link
@@ -50,7 +54,7 @@ export default function HeroSite() {
         <div className="mx-auto mt-16 flex max-w-2xl sm:mt-24 lg:ml-10 lg:mt-0 lg:mr-0 lg:max-w-none lg:flex-none xl:ml-32">
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <img
-              src="https://tailwindui.com/img/component-images/dark-project-app-screenshot.png"
+              src={image}
               alt="App screenshot"
               width={2432}
               height={1442}

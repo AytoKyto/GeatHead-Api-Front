@@ -1,27 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import React, { useContext } from "react";
+import { Navigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthProvider";
 
-const PrivateRoute = ({ component: Component, ...rest }) => {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-    const navigate = useNavigate();
-  
-    useEffect(() => {
-      const token = localStorage.getItem("token");
-      setIsAuthenticated(!!token);
-  
-      if (!token) {
-        navigate("/signin");
-      }
-    }, []);
-  
-    return (
-      <Route
-        {...rest}
-        element={
-          isAuthenticated ? <Component {...rest} /> : <Navigate to="/signin" replace />
-        }
-      />
-    );
-  };
-  
-  export default PrivateRoute;
+const PrivateRoute = ({ children }) => {
+  const { userData } = useContext(AuthContext);
+
+  if (!userData) {
+    return <Navigate to="/signin" replace />;
+  }
+
+  return children;
+};
+
+export default PrivateRoute;
