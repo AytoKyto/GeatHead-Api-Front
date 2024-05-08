@@ -27,7 +27,6 @@ const getProject = async (userId) => {
 const deleteProject = async (projectId) => {
   try {
     const response = await axios.delete("/projects/delete-project/" + projectId);
-    console.log(response);
     if (response.status) {
       toast.success("Supprimer avec effectué !");
     } else {

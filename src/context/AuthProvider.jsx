@@ -1,6 +1,7 @@
 import React, { createContext, useState, useEffect } from "react";
 import PropTypes from "prop-types";
-import jwtDecode from "jwt-decode";
+// Importation correcte de jwtDecode
+import { jwtDecode } from "jwt-decode";
 
 // Créer le contexte d'authentification
 export const AuthContext = createContext();

@@ -16,7 +16,6 @@ export default function App() {
 
   const handleResize = () => setScreenSize(window.innerWidth);
   useEffect(() => {
-    console.log(window.location.pathname);
     if (window.location.pathname === "/") {
       setIsMobile(false);
     } else {
