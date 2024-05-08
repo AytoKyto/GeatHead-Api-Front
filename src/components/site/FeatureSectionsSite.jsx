@@ -7,19 +7,19 @@ import image from "../../assets/images/screen1.png";
 
 const features = [
   {
-    name: "Api auto hébergé.",
+    name: "API auto-hébergée",
     description:
       "Facilitez la création de votre API grâce à notre solution d'API auto-hébergée, simplifiant le processus et vous offrant une infrastructure solide et sécurisée.",
     icon: CloudArrowUpIcon,
   },
   {
-    name: "Facilité de création.",
+    name: "Facilité de création",
     description:
-      "Notre interface utilisateur simple et efficace va droit au but pour une expérience utilisateur optimale.",
+      "Notre interface utilisateur simple et efficace offre une expérience utilisateur optimale.",
     icon: ArrowPathIcon,
   },
   {
-    name: "Qualité de type de données.",
+    name: "Qualité des types de données",
     description:
       "Notre large gamme de types de données vous permet de créer facilement n'importe quelle API selon vos besoins.",
     icon: ServerIcon,
@@ -38,7 +38,11 @@ export default function FeatureSectionSite() {
             Quelle sont les fonctionnalités ?
           </p>
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            Notre service d'API de test avec Faker.js vous permet de créer facilement des API de test réalistes et personnalisées avec des données fictives. Simplifiez vos tests de développement, améliorez la qualité de votre code et accélérez votre processus de mise sur le marché grâce à notre générateur d'API intuitif et performant.
+            Notre service d'API de test avec Faker.js vous permet de créer
+            facilement des API de test réalistes et personnalisées avec des
+            données fictives. Simplifiez vos tests de développement, améliorez
+            la qualité de votre code et accélérez votre processus de mise sur le
+            marché grâce à notre générateur d'API intuitif et performant.
           </p>
         </div>
       </div>

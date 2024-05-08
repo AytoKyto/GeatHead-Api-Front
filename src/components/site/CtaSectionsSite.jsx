@@ -10,7 +10,9 @@ export default function CtaSectionSite() {
             Découvrez notre application !
           </h2>
           <p className="mx-auto mt-6 max-w-xl text-lg leading-8 text-slate-300">
-            Créez un compte dès maintenant et accédez à toutes les fonctionnalités de notre solution pour améliorer votre processus de développement et tester vos applications plus rapidement.
+            Créez un compte dès maintenant et accédez à toutes les
+            fonctionnalités de notre solution pour améliorer votre processus de
+            développement et tester vos applications plus rapidement.
           </p>
           <div className="mt-10 flex items-center justify-center gap-x-6">
             <Link

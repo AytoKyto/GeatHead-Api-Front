@@ -31,8 +31,8 @@ export default function HeroSite() {
             Création rapide d'API de test
           </h1>
           <p className="mt-6 text-lg leading-8 text-slate-300">
-            Créez facilement des API de test sur mesure avec des données
-            fictives en quelques clics grâce à notre générateur d'API alimenté
+            Créez facilement des API de test personnalisées avec des données
+            fictives en quelques clics, grâce à notre générateur d'API alimenté
             par Faker.js. Simplifiez votre processus de développement et
             améliorez la qualité de vos tests avec nos solutions sur mesure.
           </p>
