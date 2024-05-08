@@ -227,7 +227,7 @@ export default function Register() {
 
                     <div className="text-sm">
                       <Link
-                        to="/"
+                        to="/forgot-password"
                         className="font-medium text-indigo-600 hover:text-indigo-500"
                       >
                         Mot de passe oublié ?

@@ -5,7 +5,11 @@ import DefaultBox from "../../components/layout/DefaultBox";
 
 import { AuthContext } from "../../context/AuthProvider";
 
-import { createProject, getProject } from "../../api/ProjectService";
+import {
+  createProject,
+  getProject,
+  deleteProject,
+} from "../../api/ProjectService";
 import { getDataUser } from "../../api/UserService";
 
 export default function ProjectDash() {
@@ -21,6 +25,12 @@ export default function ProjectDash() {
     const userDatas = await getDataUser(userData.id);
     setProjects(projects);
     setUserAllData(userDatas);
+  };
+
+  const deleteProjectFunc = async (id) => {
+    deleteProject(id);
+    const projects = await getProject(userData.id);
+    setProjects(projects);
   };
 
   useEffect(() => {
@@ -56,7 +66,7 @@ export default function ProjectDash() {
                 name={project.name}
                 id={project._id}
                 date={project.date_created}
-                fetchData={getProject}
+                deleteProject={deleteProjectFunc}
               />
             ))}
           <DefaultBox customClass="flex flex-col flex-1 w-full transition-all">

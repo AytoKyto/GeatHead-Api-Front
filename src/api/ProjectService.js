@@ -24,6 +24,23 @@ const getProject = async (userId) => {
   }
 };
 
+const deleteProject = async (projectId) => {
+  try {
+    const response = await axios.delete("/projects/delete-project/" + projectId);
+    console.log(response);
+    if (response.status) {
+      toast.success("Supprimer avec effectué !");
+    } else {
+      toast.error("Une érreur est survenue, veilleur réessayer ultérieurement");
+    }
+    return response.data;
+  } catch (error) {
+    toast.error("Une érreur est survenue, veilleur réessayer ultérieurement");
+    console.error("Erreur lors de la récupération des routes:", error);
+    return null;
+  }
+};
+
 const createProject = async (data) => {
   try {
     const response = await axios.post("/projects/create-project", data);
@@ -40,4 +57,4 @@ const createProject = async (data) => {
   }
 };
 
-export { getSingleProject, createProject, getProject };
+export { getSingleProject, createProject, getProject, deleteProject };

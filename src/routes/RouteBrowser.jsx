@@ -12,6 +12,7 @@ import SignIn from "../pages/public/site/SignIn";
 import ProjectDash from "../pages/private/ProjectDash";
 import RouteList from "../pages/private/RouteList";
 import UserPage from "../pages/private/UserPage";
+import ForgotPassword from "../pages/public/site/ForgotPassword";
 
 // RouteBrowser component for creating different routes for the application.
 export default function RouteBrowser() {
@@ -21,6 +22,7 @@ export default function RouteBrowser() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/forgot-password" element={<ForgotPassword />} />
 
         <Route
           path="/register"

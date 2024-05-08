@@ -11,7 +11,7 @@ import logo_full_white from "../../../assets/logo/logo_full_white.svg";
 /**
  * Component for user sign in
  */
-export default function SignIn() {
+export default function ForgotPassword() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
 
@@ -22,11 +22,13 @@ export default function SignIn() {
    * @property {string} password - The user's password
    * @property {boolean} remember - Whether to remember the user or not
    */
-  const [data, setData] = useState(/** @type UserData */({
-    email: "",
-    password: "",
-    remember: false,
-  }));
+  const [data, setData] = useState(
+    /** @type UserData */ ({
+      email: "",
+      password: "",
+      remember: false,
+    })
+  );
 
   /**
    * Alert data state
@@ -35,11 +37,13 @@ export default function SignIn() {
    * @property {string} subTitle - The subtitle of the alert
    * @property {boolean} error - Whether the alert is an error or not
    */
-  const [alertData, setAlertData] = useState(/** @type AlertData */({
-    title: "",
-    subTitle: "",
-    error: false,
-  }));
+  const [alertData, setAlertData] = useState(
+    /** @type AlertData */ ({
+      title: "",
+      subTitle: "",
+      error: false,
+    })
+  );
 
   /**
    * Close the alert
@@ -68,7 +72,7 @@ export default function SignIn() {
    * @property {Object} headers - The request headers
    * @property {UserData} data - The request data
    */
-  const options = /** @type RequestOptions */({
+  const options = /** @type RequestOptions */ ({
     method: "POST",
     url: "http://localhost:3001/auth/login",
     headers: { "Content-Type": "application/json" },
@@ -151,10 +155,13 @@ export default function SignIn() {
               alt="Your Company"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-slate-100">
-              Vous connecter
+              Mot de passe oublié /!\ indisponible
             </h2>
+            <p className="mt-6 text-center text-xl font-bold tracking-tight text-slate-100">
+              <strong>Contact : </strong>m.fleury942@gmail.com
+            </p>
           </div>
-          <div className="mt-8 space-y-6">
+          {/* <div className="mt-8 space-y-6">
             <input type="hidden" name="remember" defaultValue="true" />
             <div className="-space-y-px rounded-md shadow-sm">
               <div>
@@ -172,51 +179,6 @@ export default function SignIn() {
                   onChange={(e) => setData({ ...data, email: e.target.value })}
                 />
               </div>
-              <div>
-                <label htmlFor="password" className="sr-only">
-                  Mot de passe
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full  bg-transparent text-white appearance-none rounded-none rounded-b-md border border-slate-300 px-3 py-2 placeholder-slate-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Mot de passe"
-                  onChange={(e) =>
-                    setData({ ...data, password: e.target.value })
-                  }
-                />
-              </div>
-            </div>
-
-            <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-slate-300 text-indigo-600 focus:ring-indigo-500"
-                  onChange={handleCheckboxChange}
-                  checked={data.remember}
-                />
-                <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-slate-100"
-                >
-                  Se souvenir de moi pendant 14 jours
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <Link
-                  to="/forgot-password"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
-                >
-                  Mot de passe oublié ?
-                </Link>
-              </div>
             </div>
 
             <div>
@@ -224,10 +186,10 @@ export default function SignIn() {
                 type="submit"
                 className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
               >
-                Se connecter
+                Envoyer
               </button>
             </div>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>
