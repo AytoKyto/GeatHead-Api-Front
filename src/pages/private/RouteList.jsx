@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { faker } from "@faker-js/faker";
-import ReactJson from "react-json-view";
+import JsonView from 'react18-json-view'
+import 'react18-json-view/src/style.css'
 import { Link } from "react-router-dom";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
@@ -145,7 +146,7 @@ export default function RouteList() {
               />
             </div>
             <div className="w-[25%] p-2 bg-custom-600 rounded-lg h-full overflow-scroll">
-              <ReactJson
+              <JsonView
                 theme={"brewer"}
                 src={{
                   status: true,
