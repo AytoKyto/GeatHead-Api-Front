@@ -83,7 +83,7 @@ export default function ProjectDash() {
                 type="text"
                 name="projectName"
                 placeholder="Nom du nouveau projet"
-                className="block max-w-52 rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                className="block w-full rounded-md bg-transparent h-7 border-0 py-1.5 text-gray-200 shadow-sm ring-1 ring-inset ring-slate-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
                 ref={inputRef}
                 onChange={(e) =>
                   setDataProject({ ...dataProject, name: e.target.value })

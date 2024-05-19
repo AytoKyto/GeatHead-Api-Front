@@ -7,6 +7,7 @@ import InfoSiteAuth from "../../../components/site/InfoSiteAuth";
 import WallSvg from "../../../components/Ui/Other/WallSvg";
 import { AuthContext } from "../../../context/AuthProvider";
 import DefaultAlert from "../../../components/Ui/DefaultAlert";
+import { createUser } from "../../../api/UserService";
 
 import logo_full_white from "../../../assets/logo/logo_full_white.svg";
 
@@ -160,7 +161,7 @@ export default function Register() {
               </h2>
             </div>
 
-            <form className="mt-8 space-y-6" onSubmit={handleRegister}>
+            <div className="mt-8 space-y-6">
               <div className="mt-6">
                 <div className="space-y-6">
                   <div>
@@ -238,6 +239,26 @@ export default function Register() {
                   <div>
                     {data.remember ? (
                       <button
+                        onClick={async () => {
+                          try {
+                            const createUserData = await createUser(data);
+                            if (createUserData) {
+                              await login(createUserData.data.token);
+                              navigate("/project");
+                            } else {
+                              // Gérer le cas où createUserData est null ou non valide
+                              console.error(
+                                "Échec de la création de l'utilisateur."
+                              );
+                            }
+                          } catch (error) {
+                            console.error(
+                              "Erreur lors de la création de l'utilisateur:",
+                              error
+                            );
+                            // Vous pouvez également afficher une notification ou un message d'erreur à l'utilisateur ici
+                          }
+                        }}
                         type="submit"
                         className="flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
                       >
@@ -261,7 +282,7 @@ export default function Register() {
                   </div>
                 </div>
               </div>
-            </form>
+            </div>
           </div>
         </div>
         <div className="relative hidden w-0 flex-1 lg:block">

@@ -9,7 +9,8 @@ const getSingleProject = async (projectIdUrl) => {
 
     return response.data.data;
   } catch (error) {
-    console.error("Erreur lors de la récupération des routes:", error);
+    console.error("Erreur lors de la récupération des projets:", error);
+    toast.error(error.response.data.message);
     return null;
   }
 };
@@ -19,7 +20,8 @@ const getProject = async (userId) => {
     const response = await axios.get("/projects/get-projects/" + userId);
     return response.data.data;
   } catch (error) {
-    console.error("Erreur lors de la récupération des routes:", error);
+    console.error("Erreur lors de la récupération des projets:", error);
+    toast.error(error.response.data.message);
     return null;
   }
 };
@@ -34,8 +36,8 @@ const deleteProject = async (projectId) => {
     }
     return response.data;
   } catch (error) {
-    toast.error("Une érreur est survenue, veilleur réessayer ultérieurement");
-    console.error("Erreur lors de la récupération des routes:", error);
+    console.error("Erreur lors de la récupération des projets:", error);
+    toast.error(error.response.data.message);
     return null;
   }
 };
@@ -50,8 +52,8 @@ const createProject = async (data) => {
     }
     return response.data.data;
   } catch (error) {
-    toast.error("Une érreur est survenue, veilleur réessayer ultérieurement");
-    console.error("Erreur lors de la récupération des routes:", error);
+    console.error("Erreur lors de la récupération des projets:", error);
+    toast.error(error.response.data.message);
     return null;
   }
 };
