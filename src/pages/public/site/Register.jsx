@@ -242,7 +242,7 @@ export default function Register() {
                         onClick={async () => {
                           try {
                             const createUserData = await createUser(data);
-                            if (createUserData) {
+                            if (createUserData !== null) {
                               await login(createUserData.data.token);
                               navigate("/project");
                             } else {
