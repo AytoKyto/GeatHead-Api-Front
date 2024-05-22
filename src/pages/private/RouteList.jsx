@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { faker } from "@faker-js/faker";
-import JsonView from 'react18-json-view'
-import 'react18-json-view/src/style.css'
+import JsonView from "react18-json-view";
+import "react18-json-view/src/style.css";
 import { Link } from "react-router-dom";
 import { ArrowLeftCircleIcon } from "@heroicons/react/24/outline";
 
@@ -52,9 +52,11 @@ export default function RouteList() {
 
   const fetchRouteData = async (id) => {
     const dataValue = await getDataRoute(id);
-    setData(dataValue[0]?.value || []);
-    setInitData(dataValue[0].value ? true : false);
-    setDataId(dataValue[0]?._id || null);
+    console.log("dataValue", dataValue);
+    console.log("id", id);
+    setData(dataValue.length > 0 ? dataValue[0]?.value : []);
+    setInitData(dataValue.length > 0 ? true : false);
+    setDataId(dataValue.length > 0 ? dataValue[0]?._id : null);
   };
 
   const newRouteList = async () => {

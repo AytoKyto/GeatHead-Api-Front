@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 import ProjectMenu from "../Menu/ProjectMenu";
 
 import DefaultBox from "../../layout/DefaultBox";
+import DefaultBoxMotion from "../../layout/DefaultBoxMotion";
 
 export default function ProjectCard({ name, id, date, deleteProject }) {
 
   return (
     <div>
-      <DefaultBox customClass="flex space-x-5 justify-between">
+      <DefaultBoxMotion customClass="flex space-x-5 justify-between">
         <div>
           <DefaultBox customClass="w-auto h-full p-5 bg-custom-700 rounded-lg flex justify-center items-center cursor-pointer hover:bg-custom-600 focus:bg-custom-600 transition-all">
             <Link to={`/list/${id}`}>
@@ -40,7 +41,7 @@ export default function ProjectCard({ name, id, date, deleteProject }) {
             </div>
           </div>
         </div>
-      </DefaultBox>
+      </DefaultBoxMotion>
     </div>
   );
 }

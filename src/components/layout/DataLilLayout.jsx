@@ -1,13 +1,16 @@
 import React, { useState, Fragment } from "react";
 import { Transition } from "@headlessui/react";
 import { ChevronRightIcon, ChevronDownIcon } from "@heroicons/react/20/solid";
-import DefaultBox from "./DefaultBox";
+import DefaultBoxMotion from "./DefaultBoxMotion";
 
-const DataLilLayout = ({ children, sustitle, data, datas, setData }) => {
+const DataLilLayout = ({ children, sustitle, data, isNotAnime }) => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <DefaultBox customClass={"flex flex-col space-y-2 w-full"}>
+    <DefaultBoxMotion
+      customClass={"flex flex-col space-y-2 w-full"}
+      isNotAnime={isNotAnime}
+    >
       <div className="cursor-pointer" onClick={() => setIsOpen(!isOpen)}>
         <div className="relative flex items-center space-x-4">
           <div className="min-w-0 flex-auto">
@@ -51,7 +54,7 @@ const DataLilLayout = ({ children, sustitle, data, datas, setData }) => {
       >
         {children}
       </Transition>
-    </DefaultBox>
+    </DefaultBoxMotion>
   );
 };
 

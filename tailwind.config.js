@@ -4,7 +4,9 @@ const colors = require("tailwindcss/colors");
 module.exports = {
   content: ["./src/**/*.{js,jsx,ts,tsx}"],
   theme: {
-    extend: {},
+    extend: {
+      backdropFilter: { 'none': 'none', 'blur': 'blur(20px)' },
+    },
     fontFamily: {
       // Montserrat is the default font family
       sans: ["Inter", "sans-serif"],
@@ -34,6 +36,7 @@ module.exports = {
       slate: colors.slate,
       blue: colors.blue,
       indigo: colors.indigo,
+      zinc: colors.zinc,
       custom: {
         50: "#E3E3ED",
         100: "#C7C7DB",
@@ -53,4 +56,5 @@ module.exports = {
     },
   },
   plugins: [require("@tailwindcss/forms")],
+  
 };

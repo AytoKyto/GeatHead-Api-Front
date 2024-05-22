@@ -14,7 +14,7 @@ const addDataToNestedStructure = (newData, currentData, data) => {
       // Recursively update children
       return {
         ...item,
-        value: addDataToNestedStructure(newData, item.value),
+        value: addDataToNestedStructure(newData, item.value, data),
       };
     }
     return item;

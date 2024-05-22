@@ -17,6 +17,23 @@ export default function InfoSiteAuth() {
           </p>
         </div>
       </div>
+
+      <div
+        className="p-4 rounded-xl shadow-lg backdrop-blur-lg overflow-hidden"
+        style={{
+          backgroundColor: "rgba(255, 255, 255, 0.05)",
+          border: "1px solid",
+          borderImageSlice: 1,
+          borderRadius: "0.75rem",
+          borderImageSource:
+            "linear-gradient(to right, rgba(128, 128, 128, 0.2), rgba(64, 64, 64, 0.2))",
+        }}
+      >
+        <h2 className="text-center text-white">Contenu Flou</h2>
+        <p className="text-white">
+          Ce contenu a un arrière-plan flou avec une bordure en dégradé de gris.
+        </p>
+      </div>
     </div>
   );
 }

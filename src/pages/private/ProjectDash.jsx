@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext, useRef } from "react";
 import { Link } from "react-router-dom";
 import ProjectCard from "../../components/Ui/Card/ProjectCard";
 import DefaultBox from "../../components/layout/DefaultBox";
+import { toast } from "sonner";
 
 import { AuthContext } from "../../context/AuthProvider";
 
@@ -11,6 +12,7 @@ import {
   deleteProject,
 } from "../../api/ProjectService";
 import { getDataUser } from "../../api/UserService";
+import DefaultBoxMotion from "../../components/layout/DefaultBoxMotion";
 
 export default function ProjectDash() {
   const inputRef = useRef(null);
@@ -21,22 +23,40 @@ export default function ProjectDash() {
     name: "",
   });
   const initData = async (id) => {
-    const projects = await getProject(id);
-    const userDatas = await getDataUser(userData.id);
-    setProjects(projects);
-    setUserAllData(userDatas);
+    try {
+      const projects = await getProject(id);
+      const userDatas = await getDataUser(userData.id); // Ensure 'userData.id' is correctly scoped or passed
+      setProjects(projects);
+      setUserAllData(userDatas);
+
+      // Resolve with some status or data indicating success
+      return { message: "Données chargées avec succès", projects, userDatas };
+    } catch (error) {
+      // Reject the promise on failure
+      throw new Error(
+        "Une érreur est survenue, veilleur réessayer ultérieurement"
+      );
+    }
   };
+
+  useEffect(() => {
+    // Utilizing toast.promise with initData
+    toast.promise(initData(userData.id), {
+      loading: "Chargement...",
+      success: (data) => {
+        return `${data.message} avec ${data.projects.length} projet${
+          data.projects.length > 1 ? "s" : ""
+        } chargé${data.projects.length > 1 ? "s" : ""}.`;
+      },
+      error: "Une érreur est survenue, veilleur réessayer ultérieurement",
+    });
+  }, []);
 
   const deleteProjectFunc = async (id) => {
     deleteProject(id);
     const projects = await getProject(userData.id);
     setProjects(projects);
   };
-
-  useEffect(() => {
-    initData(userData.id);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <div className="bg-custom-700 min-h-screen">

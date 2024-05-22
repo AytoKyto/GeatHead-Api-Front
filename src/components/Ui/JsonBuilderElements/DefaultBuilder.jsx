@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Transition } from "@headlessui/react";
 import DataLilLayout from "../../layout/DataLilLayout";
 import ModalTypeData from "../Modal/ModalTypeData";
@@ -14,7 +14,7 @@ function classNames(...classes) {
 }
 
 const DefaultBuilder = ({ data = {}, datas, setData }) => {
-  const [selected, setSelected] = useState({ id: 1, name: data.type });
+  const selected = { id: 1, name: data.type };
   const [isModale, setIsModale] = useState(false);
   const [enabled, setEnabled] = useState(false);
 
@@ -47,7 +47,7 @@ const DefaultBuilder = ({ data = {}, datas, setData }) => {
           onAdd={handleUpdateData}
         />
       </Transition>
-      <DataLilLayout sustitle={data.value} data={data}>
+      <DataLilLayout sustitle={data.value} data={data} isNotAnime={true}>
         <div className="flex justify-between items-end">
           <div className="flex space-x-3 z-50 items-end">
             {selected.id === 1 && (
